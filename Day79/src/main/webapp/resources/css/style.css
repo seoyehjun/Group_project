@@ -1,0 +1,77 @@
+@charset "UTF-8";
+.debug {
+	color: red;
+}
+body {
+	width: 1100px;
+	margin: 0 auto;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+section {
+	min-height: 600px;
+	/* background-color: orange; */
+}
+footer {
+	text-align: center;
+}
+.menu {
+	display: flex;
+	justify-content: space-between;
+}
+.menu > ul {
+	list-style: none;
+	padding: 0;
+	display: flex;
+}
+.menu li {
+	margin: 0 10px;
+}
+.board {
+	width: 98%;
+	margin: 0 auto;
+}
+.board > table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.board th, .board td {
+	border: 1px solid #aaaaaa;
+	padding: 5px 10px;
+}
+.half {
+	width: 50%;
+}
+.noborder th, .noborder td {
+	border: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
