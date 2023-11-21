@@ -26,7 +26,8 @@ import com.bookshop01.order.vo.OrderVO;
 
 @Controller("myPageController")
 @RequestMapping(value="/mypage")
-public class MyPageControllerImpl extends BaseController  implements MyPageController{
+public class MyPageControllerImpl extends BaseController  implements MyPageController
+{
 	@Autowired
 	private MyPageService myPageService;
 	
@@ -43,7 +44,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		memberVO=(MemberVO)session.getAttribute("memberInfo");
+		memberVO=(MemberVO)session.getAttribute("memberInfo");//VO 형태로 바인딩됨(로그인 컨트롤러에서)
 		String member_id=memberVO.getMember_id();
 		
 		List<OrderVO> myOrderList=myPageService.listMyOrderGoods(member_id);

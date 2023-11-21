@@ -38,7 +38,7 @@ public class AccountController {
 	
 	@GetMapping("/list")
 	public void accList(Model model) {
-		model.addAttribute("list", as.getAccounts());
+		model.addAttribute("list", as.getAccounts());//메서드 반환값을 사용할 떈 addAttribute
 	}
 	
 	@GetMapping("/login")

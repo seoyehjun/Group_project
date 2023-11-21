@@ -35,12 +35,12 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	public ModelAndView login(@RequestParam Map<String, String> loginMap,
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		 memberVO=memberService.login(loginMap);
+		 memberVO = memberService.login(loginMap);
 		if(memberVO!= null && memberVO.getMember_id()!=null){
 			HttpSession session=request.getSession();
 			session=request.getSession();
 			session.setAttribute("isLogOn", true);
-			session.setAttribute("memberInfo",memberVO);
+			session.setAttribute("memberInfo",memberVO);//회원정보VO형태로 바인딩
 			
 			String action=(String)session.getAttribute("action");
 			if(action!=null && action.equals("/order/orderEachGoods.do")){
