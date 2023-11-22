@@ -66,7 +66,7 @@ function fn_cancel_order(order_id){
 	       <c:choose> 
               <c:when test="${ pre_order_id != item.order_id}">
                 <c:choose>
-	              <c:when test="${item.delivery_state == 'delivery_prepared' }">
+	               <c:when test="${item.delivery_state == 'delivery_prepared' }">
 	                <tr  bgcolor="lightgreen">    
 	              </c:when>
 	              <c:when test="${item.delivery_state == 'finished_delivering' }">

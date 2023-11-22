@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<context:component-scan base-package="com.itbank.service"/>
+	<context:component-scan base-package="com.itbank.components"/>
+	<mybatis-spring:scan base-package="com.itbank.model"/>
+	
+	<bean id="hc" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.137.50:1521/oracle19" />
+		<property name="username" value="itbank" />
+		<property name="password" value="123" />
+	</bean>
+	
+	<bean id="hds" class="com.zaxxer.hikari.HikariDataSource">
+		<constructor-arg ref="hc"/>
+	</bean>
+	
+	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="hds"/>
+		<property name="mapperLocations">
+			<list>
+				<value></value>
+				<value></value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sst" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="ssf"/>
+	</bean>
 		
 </beans>
