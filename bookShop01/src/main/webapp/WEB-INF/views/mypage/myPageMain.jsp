@@ -14,7 +14,8 @@
 	  init();
 	}
 	
-	function init(){
+	function init()
+	{
 		alert("주문을 취소했습니다.");
 	}
 	</script>
@@ -56,19 +57,19 @@ function fn_cancel_order(order_id){
          <c:when test="${ empty myOrderList  }">
 		  <tr>
 		    <td colspan=5 class="fixed">
-				  <strong>주문한 상품이 없습니다.</strong>
+				  <strong>주문한 상품이 없습니다. </strong>
 		    </td>
 		  </tr>
         </c:when>
-        <c:otherwise>
+        <c:otherwise><%--주문 상품이 존재할 경우 --%>
 	      <c:forEach var="item" items="${myOrderList }"  varStatus="i">
 	       <c:choose> 
               <c:when test="${ pre_order_id != item.order_id}">
                 <c:choose>
-	              <c:when test="${item.delivery_state=='delivery_prepared' }">
+	              <c:when test="${item.delivery_state == 'delivery_prepared' }">
 	                <tr  bgcolor="lightgreen">    
 	              </c:when>
-	              <c:when test="${item.delivery_state=='finished_delivering' }">
+	              <c:when test="${item.delivery_state == 'finished_delivering' }">
 	                <tr  bgcolor="lightgray">    
 	              </c:when>
 	              <c:otherwise>

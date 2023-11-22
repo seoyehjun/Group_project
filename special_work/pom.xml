@@ -124,6 +124,11 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		<dependency> <!-- 임의로 추가됨 -->
+  			<groupId>taglibs</groupId> 
+  			<artifactId>standard</artifactId> 
+  			<version>1.1.2</version> 
+		</dependency>
 
 		<!-- Test -->
 		<dependency>
