@@ -22,19 +22,20 @@ public class MypagController
 	@Autowired private MyPageService myPageService;
 	
 	@Autowired
-	private MemberVO memberVO;//session에서 get해온다.
-	
+	private OrderVO OrderVO;//session에서 get해온다.
+	@Autowired
+	private MemberVO memberVO;
 	@GetMapping("/myPageMain")//orderlist바인딩 ,  세션으로부터 memberVO에 정보 바인딩
-	public ModelAndView myPageMain(Model model, HttpSession httpsession)
+	public ModelAndView myPageMain(Model model, HttpSession httpsession)throws Exception
 	{
 		memberVO = (MemberVO)httpsession.getAttribute("memberInfo");
-	    //int member_id = memberVO.getMember_id();VO 구현해라
+		String member_id = OrderVO.getOrderid()+"";//VO 구현해라
 		
 		ModelAndView mav = new ModelAndView();
-		//List<OrderVO> myOrderList = myPageService.;//오더 리스트 받아오는 함수 구현해라(위에서 받은 id를 토대로)
+		List<OrderVO> myOrderList = myPageService.listMyOrderGoods(member_id);//오더 리스트 받아오는 함수 구현해라(위에서 받은 id를 토대로)
 		
 		mav.addObject("myOrderList",myOrderList);
 		
-		return 
+		return mav;
 	}
 }
