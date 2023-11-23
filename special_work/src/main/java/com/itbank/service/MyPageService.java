@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import com.itbank.model.dao.MyPageDAO;
 import com.itbank.model.vo.OrderVO;
 
-@Service("myPageService")
+@Service
 public class MyPageService 
 {
 	@Autowired
 	private MyPageDAO myPageDAO;
 	
-	public List<OrderVO> listMyOrderGoods(String member_id) throws Exception
+	public List<OrderVO> listMyOrderGoods(String member_idx) throws Exception
 	{
-		return myPageDAO.listMyOrderGoods(member_id);
+		return myPageDAO.listMyOrderGoods(member_idx);
 	}
 }
