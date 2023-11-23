@@ -29,14 +29,29 @@
 			</c:when>
 			<c:otherwise><%--주문 상품이 존재할 경우 --%>
 			 <c:forEach var="item" items="${myOrderList }" varStatus="i">
-			  <c:choose>		
-				<c:when test="${pre_order_id != item.order_id }">
-				 <c:choose>
-				 
+			  
+			  <c:choose><%--점선 --%>	
+				<c:when test="${ pre_order_id != item.order_id }">
+				  <tr bgcolor="lightgreen">
 				</c:when>
+				<c:when test="${item.delivery_state == 'finished_delivering }">
+				  <tr bgcolor="lightgray">
+				</c:when>
+				<c:otherwise>
+				 <tr bgcolor="orange">
+				</c:otherwise>
 			  </c:choose>
+		
+		    <tr><%--실제 상품 --%>
+		     <td><%--주문번호 --%>
+		      <a href="${contextPath }/mypage/myOrderDetail.do?order_id=${item.order_id}">${item.order_id }</a>
+		     </td>
+		    
+		    </tr>
+		
 			</c:forEach>
-			</c:otherwise>
+			
+			</c:otherwise><%--주문 상품이 존재할 경우 --%>
 		</c:choose>
 		</tbody>
 	</table>
