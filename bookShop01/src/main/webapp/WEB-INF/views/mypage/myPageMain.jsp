@@ -65,8 +65,10 @@ function fn_cancel_order(order_id){
 	      <c:forEach var="item" items="${myOrderList }"  varStatus="i">
 	       <c:choose> 
               <c:when test="${ pre_order_id != item.order_id}">
+              <%--같은 order_id 이라면 한개의 칸에 나타낸다 88번쯤에 이중for문 을 통해 --%>
+              <%--그럼으로 같은 order_id라면 그냥 지나간다 --%>
                 <c:choose>
-	               <c:when test="${item.delivery_state == 'delivery_prepared' }">
+	              <c:when test="${item.delivery_state == 'delivery_prepared' }">
 	                <tr  bgcolor="lightgreen">    
 	              </c:when>
 	              <c:when test="${item.delivery_state == 'finished_delivering' }">
@@ -76,11 +78,17 @@ function fn_cancel_order(order_id){
 	                <tr  bgcolor="orange">   
 	              </c:otherwise>
 	            </c:choose> 
-            <tr>
-             <td>
+           
+            <tr><%--실제 상품 --%>
+             
+             <td><%--주문번호 --%>
 		       <a href="${contextPath}/mypage/myOrderDetail.do?order_id=${item.order_id }"><span>${item.order_id }</span>  </a>
 		     </td>
-		    <td><span>${item.pay_order_time }</span></td>
+		   
+		    <td>
+		    <span>${item.pay_order_time }</span>
+		    </td>
+			
 			<td align="left">
 			   <strong>
 			      <c:forEach var="item2" items="${myOrderList}" varStatus="j">
@@ -88,7 +96,10 @@ function fn_cancel_order(order_id){
 			            <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item2.goods_id }">${item2.goods_title }/${item.order_goods_qty }개</a><br>
 			         </c:if>   
 				 </c:forEach>
-				</strong></td>
+				</strong>
+				
+			</td>
+			
 			<td>
 			  <c:choose>
 			    <c:when test="${item.delivery_state=='delivery_prepared' }">
@@ -108,7 +119,8 @@ function fn_cancel_order(order_id){
 			    </c:when>
 			  </c:choose>
 			</td>
-			<td>
+			
+			<td><%--배송 취소 기능 --%>
 			  <c:choose>
 			   <c:when test="${item.delivery_state=='delivery_prepared'}">
 			       <input  type="button" onClick="fn_cancel_order('${item.order_id}')" value="주문취소"  />
@@ -118,13 +130,18 @@ function fn_cancel_order(order_id){
 			   </c:otherwise>
 			  </c:choose>
 			</td>
-			</tr>
-          <c:set  var="pre_order_id" value="${item.order_id}" />
-           </c:when>
-      </c:choose>
+			
+			</tr><%--실제 상품 row --%>
+         
+           <c:set  var="pre_order_id" value="${item.order_id}" /><%--중복상품 처리 --%>
+           
+           </c:when><%--이전 주문과 동일하지 않을 경우 --%>
+      	</c:choose> <%--주문상품 동일 여부 --%>
+	   
 	   </c:forEach>
-	  </c:otherwise>
-    </c:choose> 	    
+	  
+	  </c:otherwise> <%--주문 상품이 존재할 경우 --%>
+    </c:choose> 	 <%--주문상품 있냐 없냐 여부 --%>   
 </tbody>
 </table>
 
