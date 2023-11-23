@@ -4,95 +4,85 @@ import java.sql.Date;
 
 public class OrderVO 
 {
-	private int orderid, productid,memberid,totalpayment
-	, totalquantity;
-	private String orderstatus, recipientname,postalcode, recipientaddress
-	,recipientphone, deliveryrequest, representativeproduct
-	,representativeimageurl;
+	int orders_idx,orders_total_amount,orders_total_quantity,
+	products_id, members_id;
+	Date orders_date;
+	String orders_status, orders_recipient_name, 
+	orders_recipient_address, orders_detailed_address,
+	orders_recipient_phone, orders_delivery_notes;
 	
-	public int getOrderid() {
-		return orderid;
+	
+	public int getProduct_id() {
+		return products_id;
 	}
-	public void setOrderid(int orderid) {
-		this.orderid = orderid;
+	public void setProduct_id(int product_id) {
+		this.products_id = product_id;
 	}
-	public int getProductid() {
-		return productid;
+	public int getMember_id() {
+		return members_id;
 	}
-	public void setProductid(int productid) {
-		this.productid = productid;
+	public void setMember_id(int member_id) {
+		this.members_id = member_id;
 	}
-	public int getMemberid() {
-		return memberid;
+	public int getOrders_idx() {
+		return orders_idx;
 	}
-	public void setMemberid(int memberid) {
-		this.memberid = memberid;
+	public void setOrders_idx(int orders_idx) {
+		this.orders_idx = orders_idx;
 	}
-	public int getTotalpayment() {
-		return totalpayment;
+	public int getOrders_total_amount() {
+		return orders_total_amount;
 	}
-	public void setTotalpayment(int totalpayment) {
-		this.totalpayment = totalpayment;
+	public void setOrders_total_amount(int orders_total_amount) {
+		this.orders_total_amount = orders_total_amount;
 	}
-	public int getTotalquantity() {
-		return totalquantity;
+	public int getOrders_total_quantity() {
+		return orders_total_quantity;
 	}
-	public void setTotalquantity(int totalquantity) {
-		this.totalquantity = totalquantity;
+	public void setOrders_total_quantity(int orders_total_quantity) {
+		this.orders_total_quantity = orders_total_quantity;
 	}
-	public String getOrderstatus() {
-		return orderstatus;
+	public Date getOrders_date() {
+		return orders_date;
 	}
-	public void setOrderstatus(String orderstatus) {
-		this.orderstatus = orderstatus;
+	public void setOrders_date(Date orders_date) {
+		this.orders_date = orders_date;
 	}
-	public String getRecipientname() {
-		return recipientname;
+	public String getOrders_status() {
+		return orders_status;
 	}
-	public void setRecipientname(String recipientname) {
-		this.recipientname = recipientname;
+	public void setOrders_status(String orders_status) {
+		this.orders_status = orders_status;
 	}
-	public String getPostalcode() {
-		return postalcode;
+	public String getOrders_recipient_name() {
+		return orders_recipient_name;
 	}
-	public void setPostalcode(String postalcode) {
-		this.postalcode = postalcode;
+	public void setOrders_recipient_name(String orders_recipient_name) {
+		this.orders_recipient_name = orders_recipient_name;
 	}
-	public String getRecipientaddress() {
-		return recipientaddress;
+	public String getOrders_recipient_address() {
+		return orders_recipient_address;
 	}
-	public void setRecipientaddress(String recipientaddress) {
-		this.recipientaddress = recipientaddress;
+	public void setOrders_recipient_address(String orders_recipient_address) {
+		this.orders_recipient_address = orders_recipient_address;
 	}
-	public String getRecipientphone() {
-		return recipientphone;
+	public String getOrders_detailed_address() {
+		return orders_detailed_address;
 	}
-	public void setRecipientphone(String recipientphone) {
-		this.recipientphone = recipientphone;
+	public void setOrders_detailed_address(String orders_detailed_address) {
+		this.orders_detailed_address = orders_detailed_address;
 	}
-	public String getDeliveryrequest() {
-		return deliveryrequest;
+	public String getOrders_recipient_phone() {
+		return orders_recipient_phone;
 	}
-	public void setDeliveryrequest(String deliveryrequest) {
-		this.deliveryrequest = deliveryrequest;
+	public void setOrders_recipient_phone(String orders_recipient_phone) {
+		this.orders_recipient_phone = orders_recipient_phone;
 	}
-	public String getRepresentativeproduct() {
-		return representativeproduct;
+	public String getOrders_delivery_notes() {
+		return orders_delivery_notes;
 	}
-	public void setRepresentativeproduct(String representativeproduct) {
-		this.representativeproduct = representativeproduct;
+	public void setOrders_delivery_notes(String orders_delivery_notes) {
+		this.orders_delivery_notes = orders_delivery_notes;
 	}
-	public String getRepresentativeimageurl() {
-		return representativeimageurl;
-	}
-	public void setRepresentativeimageurl(String representativeimageurl) {
-		this.representativeimageurl = representativeimageurl;
-	}
-	public Date getOrderdate() {
-		return orderdate;
-	}
-	public void setOrderdate(Date orderdate) {
-		this.orderdate = orderdate;
-	}
-	private Date orderdate;
+	
 }

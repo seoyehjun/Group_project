@@ -29,10 +29,10 @@ public class MypagController
 	public ModelAndView myPageMain(Model model, HttpSession httpsession)throws Exception
 	{
 		memberVO = (MemberVO)httpsession.getAttribute("memberInfo");
-		String member_id = OrderVO.getOrderid()+"";//VO 구현해라
+		String members_idx = OrderVO.getOrders_idx()+"";//VO 구현해라
 		
 		ModelAndView mav = new ModelAndView();
-		List<OrderVO> myOrderList = myPageService.listMyOrderGoods(member_id);//오더 리스트 받아오는 함수 구현해라(위에서 받은 id를 토대로)
+		List<OrderVO> myOrderList = myPageService.listMyOrderGoods(members_idx);//오더 리스트 받아오는 함수 구현해라(위에서 받은 id를 토대로)
 		
 		mav.addObject("myOrderList",myOrderList);
 		mav.setViewName("mypage/myPageMain");

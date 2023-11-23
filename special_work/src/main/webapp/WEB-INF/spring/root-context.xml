@@ -12,9 +12,9 @@
 	
 	<bean id="hc" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.137.50:1521/oracle19" />
-		<property name="username" value="itbank" />
-		<property name="password" value="123" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.1.100:1521:x2" />
+		<property name="username" value="c##itbank" />
+		<property name="password" value="it" />
 	</bean>
 	
 	<bean id="hds" class="com.zaxxer.hikari.HikariDataSource">
