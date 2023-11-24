@@ -14,8 +14,8 @@ public class MyPageService
 	@Autowired
 	private MyPageDAO myPageDAO;
 	
-	public List<OrderVO> listMyOrderGoods(String member_idx) throws Exception
+	public List<OrderVO> listMyOrderGoods(String members_idx) throws Exception
 	{
-		return myPageDAO.listMyOrderGoods(member_idx);
+		return myPageDAO.listMyOrderGoods(members_idx);
 	}
 }
