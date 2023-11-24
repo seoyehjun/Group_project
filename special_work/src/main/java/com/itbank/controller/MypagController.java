@@ -36,7 +36,7 @@ public class MypagController
 		
 		List<OrderVO> myOrderList = myPageService.listMyOrderGoods("1");//오더 리스트 받아오는 함수 구현해라(위에서 받은 id를 토대로)
 		
-		mav.addObject("myOrderList",myOrderList);
+		mav.addObject("myOrderList", myOrderList);
 		mav.setViewName("mypage/myPageMain");
 		return mav;
 	}

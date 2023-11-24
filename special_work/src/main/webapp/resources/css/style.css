@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+
+.menu
+{
+	display: flex;
+	justify-content: spacebetween;
+}
+
+.menu> ul
+{
+	list-style: none;
+	padding: 0;
+	display: flex;
+}
+
+.menu li
+{
+	margin: 0 10px;
+}
+
+.list_view
+{
+	width: 80%;
+}
+
+.list_view td
+{
+	padding: 10px 5;
+}

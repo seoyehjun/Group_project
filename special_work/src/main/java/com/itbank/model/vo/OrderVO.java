@@ -4,19 +4,19 @@ import java.sql.Date;
 
 public class OrderVO 
 {
-	int orders_idx,orders_total_amount,orders_total_quantity,
-	products_id, members_id;
+	public int orders_idx,orders_total_amount,orders_total_quantity,
+	products_idx, members_id;
 	Date orders_date;
 	String orders_status, orders_recipient_name, 
 	orders_recipient_address, orders_detailed_address,
 	orders_recipient_phone, orders_delivery_notes;
 	
 	
-	public int getProduct_id() {
-		return products_id;
+	public int getproducts_idx() {
+		return products_idx;
 	}
-	public void setProduct_id(int product_id) {
-		this.products_id = product_id;
+	public void setproducts_idx(int product_id) {
+		this.products_idx = product_id;
 	}
 	public int getMember_id() {
 		return members_id;
