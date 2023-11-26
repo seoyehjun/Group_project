@@ -169,7 +169,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		//수정된 회원 정보를 다시 세션에 저장한다.
 		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);
 		session.removeAttribute("memberInfo");
-		session.setAttribute("memberInfo", memberVO);
+		session.setAttribute("memberInfo", memberVO);//세션 업로드
 		
 		String message = null;
 		ResponseEntity resEntity = null;
