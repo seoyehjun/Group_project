@@ -131,7 +131,8 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String  member_id=memberVO.getMember_id();
-		if(attribute.equals("member_birth")){
+		
+		if(attribute.equals("member_birth")){//코드 분리가 필요한것들은 전처리 해둔다.
 			val=value.split(",");
 			memberMap.put("member_birth_y",val[0]);
 			memberMap.put("member_birth_m",val[1]);

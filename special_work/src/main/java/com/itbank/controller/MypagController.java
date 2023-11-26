@@ -18,6 +18,7 @@ import com.itbank.model.vo.OrderVO;
 import com.itbank.service.MyPageService;
 
 @Controller
+@RequestMapping(value="/mypage")
 public class MypagController
 {	
 	@Autowired 
@@ -26,7 +27,7 @@ public class MypagController
 	private OrderVO orderVO;//session에서 get해온다.
 	//private MemberVO memberVO;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)//orderlist바인딩 ,  세션으로부터 memberVO에 정보 바인딩
+	@RequestMapping(value = "/myPageMain", method = RequestMethod.GET)//orderlist바인딩 ,  세션으로부터 memberVO에 정보 바인딩
 	public ModelAndView myPageMain(Model model, HttpSession httpsession
 			,HttpServletRequest request)throws Exception
 	{
@@ -38,6 +39,15 @@ public class MypagController
 		
 		mav.addObject("myOrderList", myOrderList);
 		mav.setViewName("mypage/myPageMain");
+		System.out.println("컨트롤러 실행됨");
+		return mav;
+	}
+	@RequestMapping(value = "/myDetailInfo", method = RequestMethod.GET)//orderlist바인딩 ,  세션으로부터 memberVO에 정보 바인딩
+	public ModelAndView myDetailInfo(Model model, HttpSession httpsession
+			,HttpServletRequest request)throws Exception
+	{
+		ModelAndView mav = new ModelAndView();
+		
 		return mav;
 	}
 }

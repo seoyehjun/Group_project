@@ -15,6 +15,7 @@ public class MemberVO {
 	int members_points;
 	Date members_join_date;
 	
+	
 	public int getMembers_idx() {
 		return members_idx;
 	}
@@ -92,5 +93,7 @@ public class MemberVO {
 	}
 	public void setMembers_join_date(Date members_join_date) {
 		this.members_join_date = members_join_date;
-	} 
+	}
+	
+	
 }

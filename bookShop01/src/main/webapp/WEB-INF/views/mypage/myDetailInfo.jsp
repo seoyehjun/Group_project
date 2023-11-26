@@ -98,8 +98,10 @@ function fn_modify_member_info(attribute){
 	// alert(member_id);
 	// alert("mod_type:"+mod_type);
 		var frm_mod_member=document.frm_mod_member;
+		
+		
 		if(attribute=='member_pw'){
-			value=frm_mod_member.member_pw.value;
+			value=frm_mod_member.member_pw.value;//frm_mod_member는 form태그 
 			//alert("member_pw:"+value);
 		}else if(attribute=='member_gender'){
 			var member_gender=frm_mod_member.member_gender;
@@ -238,7 +240,7 @@ function fn_modify_member_info(attribute){
 					<td>
 						<input name="member_id" type="text" size="20" value="${memberInfo.member_id }"  disabled/>
 					</td>
-					 <td>
+					 <td><%-- 아이디는 수정하기 버튼이 없다--%> 
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -278,6 +280,8 @@ function fn_modify_member_info(attribute){
 					  <input type="button" value="수정하기" onClick="fn_modify_member_info('member_gender')" />
 					</td>
 				</tr>
+				
+				
 				<tr class="dot_line">
 					<td class="fixed_join">법정생년월일</td>
 					<td>
@@ -334,6 +338,8 @@ function fn_modify_member_info(attribute){
 					  <input type="button" value="수정하기" onClick="fn_modify_member_info('member_birth')" />
 					</td>
 				</tr>
+				
+				
 				<tr class="dot_line">
 					<td class="fixed_join">전화번호</td>
 					<td>
@@ -371,6 +377,7 @@ function fn_modify_member_info(attribute){
 					  <input type="button" value="수정하기" onClick="fn_modify_member_info('tel')" />
 					</td>
 				</tr>
+				
 				<tr class="dot_line">
 					<td class="fixed_join">휴대폰번호</td>
 					<td>
@@ -398,12 +405,14 @@ function fn_modify_member_info(attribute){
 					  <input type="button" value="수정하기" onClick="fn_modify_member_info('hp')" />
 					</td>	
 				</tr>
+				
 				<tr class="dot_line">
 					<td class="fixed_join">이메일<br>(e-mail)</td>
 					<td>
 					   <input type="text" name="email1" size=10 value="${memberInfo.email1 }" /> @ <input type="text" size=10  name="email2" value="${memberInfo.email2 }" /> 
-					   <select name="select_email2" onChange=""  title="직접입력">
-							<option value="non">직접입력</option>
+					   <select name="select_email2" onChange=""  title="직접입력1">
+					   <%--title태그는 마우스같다대면 뜨는 글씨 --%>
+							<option value="non">직접입력</option><%--직접입력가능한 이메일 --%>
 							<option value="hanmail.net">hanmail.net</option>
 							<option value="naver.com">naver.com</option>
 							<option value="yahoo.co.kr">yahoo.co.kr</option>

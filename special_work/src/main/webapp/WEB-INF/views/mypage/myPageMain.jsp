@@ -91,7 +91,7 @@
 		      <strong>
 		       <c:forEach var="item2" items="${myOrderList }" varStatus="j"><%--전체 orders에서 같은 주문에 속한것 모두 한줄에 표시 --%>
 		        <c:if test="${item.orders_idx == item2.orders_idx }">
-		         <a href="${contextpath }/goods/goodsDetail?goods_idx=${item2.getproducts_idx()}">질문부분${item2.products_idx }/${item2.orders_total_quantity }개
+		         <a href="${contextpath }/goods/goodsDetail?goods_idx=${item2.getproducts_idx()}">${item2.products_idx }/${item2.orders_total_quantity }개
 		         </a><br>                 <%--주문의 products_idx를 주면 상품 상세페이지로 연결되도록 해주세요 --%>
 		        </c:if>
 		       </c:forEach>
@@ -140,6 +140,12 @@
 		</c:choose> <%--주문상품 있냐 없냐 여부 --%> 
 		</tbody>
 	</table>
+	
+	<hr>
+	
+	<h1>
+	
+	</h1>
 
 
 </body>
