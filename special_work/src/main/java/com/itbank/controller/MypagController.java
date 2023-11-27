@@ -35,7 +35,7 @@ public class MypagController
 	//private MemberVO memberVO;
 	
 	@RequestMapping(value = "/myPageMain", method = RequestMethod.GET)//orderlist바인딩 ,  세션으로부터 memberVO에 정보 바인딩
-	public ModelAndView myPageMain(Model model, HttpSession httpsession
+	public String myPageMain(Model model, HttpSession httpsession
 			,HttpServletRequest request)throws Exception
 	{
 		ModelAndView mav = new ModelAndView();
@@ -47,17 +47,17 @@ public class MypagController
 		mav.addObject("myOrderList", myOrderList);
 		mav.setViewName("mypage/myPageMain");
 		System.out.println("컨트롤러 실행됨");
-		return mav;
+		return "mypage/myPageMain";
 	}
 	@RequestMapping(value = "/myDetailInfo", method = RequestMethod.GET)//orderlist바인딩 ,  세션으로부터 memberVO에 정보 바인딩
-	public ModelAndView myDetailInfo(Model model, HttpSession httpsession
+	public String myDetailInfo(Model model, HttpSession httpsession
 			,HttpServletRequest request)throws Exception
 	{
 		ModelAndView mav = new ModelAndView();
-		//MemberVO temp_member = myPageService.givememember("1");
-		//mav.addObject("memberInfo",temp_member);
+		MemberVO temp_member = myPageService.givememember("4");
+		model.addAttribute("memberInfo",temp_member);
 		//System.out.println("controller executed");
-		return mav;
+		return "mypage/myDetailInfo";
 	}
 	
 	@RequestMapping(value="/modifyMyInfo.do" ,method = RequestMethod.POST)
@@ -68,26 +68,26 @@ public class MypagController
 		String val[]=null;
 		HttpSession session=request.getSession();
 		//MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
-		MemberVO memberVO = myPageService.givememember("1");
+		MemberVO memberVO = myPageService.givememember("1");//세션 받아오면 삭제될코드
 		String  member_id=memberVO.getMembers_idx()+"";
 		
-		if(attribute.equals("tel")){
+		String temp;
+		if(attribute.equals("tel"))
+		{
+			value.replace(",","");
+			memberMap.put("members_phone_number",value);
+		}
+		else if(attribute.equals("email")){
+			value.replace(",", "");
+			memberMap.put("members_email",value);
+		}
+		else if(attribute.equals("address")){
 			val=value.split(",");
-			memberMap.put("tel1",val[0]);
-			memberMap.put("tel2",val[1]);
-			memberMap.put("tel3",val[2]);
-		}else if(attribute.equals("email")){
-			val=value.split(",");
-			memberMap.put("email1",val[0]);
-			memberMap.put("email2",val[1]);
-			memberMap.put("emailsts_yn", val[2]);
-		}else if(attribute.equals("address")){
-			val=value.split(",");
-			memberMap.put("zipcode",val[0]);
-			memberMap.put("roadAddress",val[1]);
-			memberMap.put("jibunAddress", val[2]);
-			memberMap.put("namujiAddress", val[3]);
-		}else {
+			memberMap.put("members_address",val[0]);
+			memberMap.put("members_detailed_address",val[1]);
+		}
+		else //password, nickname, 
+		{
 			memberMap.put(attribute,value);	
 		}
 		

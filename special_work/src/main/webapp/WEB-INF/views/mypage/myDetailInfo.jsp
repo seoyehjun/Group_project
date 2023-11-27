@@ -10,6 +10,7 @@
 const domainListEl = document.querySelector('#domain-list')
 const domainInputEl = document.querySelector('#domain-txt')
 // select 옵션 변경 시
+
 domainListEl.addEventListener('change', (event) => {
   // option에 있는 도메인 선택 시
   if(event.target.value !== "type") {
@@ -25,7 +26,7 @@ domainListEl.addEventListener('change', (event) => {
 
 //이위 코드는 이메일 도메인 선택도와준다.
 
-/*
+<%--
 window.onload=function()
 {
   selectBoxInit();
@@ -56,7 +57,7 @@ function selectBoxInit(){
      }
    } 
  
-}*/
+}--%>
 function fn_modify_member_info(attribute){
 	var value;
 	// alert(member_id);
@@ -64,10 +65,16 @@ function fn_modify_member_info(attribute){
 		var frm_mod_member=document.frm_mod_member;
 		
 		
-		if(attribute=='member_pw'){
-			value=frm_mod_member.member_pw.value;//frm_mod_member는 form태그 
+		if(attribute=='members_password'){
+			value=frm_mod_member.members_password.value;//frm_mod_member는 form태그 
 			//alert("member_pw:"+value);
-		}else if(attribute=='tel'){
+		}
+		else if(attribute=='members_nickname')
+		{
+			value=frm_mode_member.members_nickname.value;
+		}
+		else if(attribute=='tel')
+		{
 			var tel1=frm_mod_member.tel1;
 			var tel2=frm_mod_member.tel2;
 			var tel3=frm_mod_member.tel3;
@@ -81,7 +88,9 @@ function fn_modify_member_info(attribute){
 			value_tel2=tel2.value;
 			value_tel3=tel3.value;
 			value=value_tel1+","+value_tel2+", "+value_tel3;
-		}else if(attribute=='email'){
+		}
+		else if(attribute=='email')
+		{
 			var email1=frm_mod_member.email1;
 			var email2=frm_mod_member.email2;
 			
@@ -89,7 +98,9 @@ function fn_modify_member_info(attribute){
 			value_email2=email2.value;
 			value=value_email1+","+value_email2;
 			//alert(value);
-		}else if(attribute=='address'){
+		}
+		else if(attribute=='address')
+		{
 			var address1=frm_mod_member.address1;
 			var address2=frm_mod_member.address2;
 			
@@ -135,7 +146,7 @@ function fn_modify_member_info(attribute){
    	
    	 <tr class="dot_line">
    	  <td class="fixed_join">아이디</td>
-   	  <td><input name="members_idx" type="text" size="20" value="${memberInfo }" disabled/></td>
+   	  <td><input name="members_idx" type="text" size="20" value="${memberInfo.members_idx }" disabled/></td>
    	  <%--memberInfo세션 바인딩 해주세요--%>
    	  <td></td>
    	 </tr>
@@ -148,13 +159,13 @@ function fn_modify_member_info(attribute){
    	 <tr class="dot_line">
    	  <td class="fixed_join">닉네임</td>
    	  <td><input name="members_nickname" type="text" size="20" value="${memberInfo.members_nickname}"/></td>
-   	  <td><input type="button" value="수정" onclick="fn_modify_member_info('member_nick')"/></td>
+   	  <td><input type="button" value="수정" onclick="fn_modify_member_info('members_nickname')"/></td>
    	 </tr>
    	 
    	 <tr class="dot_line">
    	  <td class="fixed_join">비밀번호</td>
    	  <td><input name="members_password" type="password" size="20" value="${memberInfo.members_password }"/></td>
-   	  <td><input type="button" value="수정" onclick="fn_modify_member_info('member_nick')"/></td>
+   	  <td><input type="button" value="수정" onclick="fn_modify_member_info('members_password')"/></td>
    	 </tr>
    	 
    	 <tr class="dot_line">
@@ -165,7 +176,7 @@ function fn_modify_member_info(attribute){
    	 <tr class="dot_line">
    	  <td class="fixed_join">전화번호</td>
    	  <td>
-   	   <select name="tel1" id="tel1">
+   	   <select name="tel1" id="tel1" >
    	    <option>없음</option>
 		<option value="010">010</option>
 		<option value="011">011</option>
@@ -193,7 +204,7 @@ function fn_modify_member_info(attribute){
    	  <c:set var="origin_email" value="${memberInfo.members_email }"/>
    	  <c:set var="refined_email" value="${fn:split(origin_email,'@') }"/>
    	   
-   	   <input type="text" name="email" size=10 value="${refined_email[0] }"/> 
+   	   <input type="text" name="email1" size=10 value="${refined_email[0] }"/> 
    	   @<input type="text" size=10 name="email2" id="domain-txt" value="${refined_email[1] }"/>
    	  
    	   <select name="select_email" id="domain-list" onChange="" title="직접입력">
@@ -215,19 +226,19 @@ function fn_modify_member_info(attribute){
    	  </td>
    	  
    	  <td>
-   	  	<input type="button" value="수정하기 " onClick="fn_modify_member_info('email')"/>
+   	  	<input type="button" value="수정 " onClick="fn_modify_member_info('email')"/>
    	  </td> 
    	 </tr>
    	 
    	 <tr class="dot_line">
    	  <td class="fixed_join">주소</td>
    	  <td>
-   	     주소 :<br><input type="text"  name="address1" size=5 value="${memberInfo.address }"><br><br>
+   	     주소 :<br><input type="text"  name="address1" size=5 value="${memberInfo.members_address }"><br><br>
    	     상세주소 :<br><input type="text"  name="address2" size=5 value="${memberInfo.members_detailed_address}">
    	  </td>
    	 
    	  <td>
-   	   <input type="button" value="수정하기" onClick="fn_modify_member_info('address')"/>
+   	   <input type="button" value="수정" onClick="fn_modify_member_info('address')"/>
    	  </td>
    	 </tr>
    	 
