@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.itbank.model.vo.MemberVO;
 import com.itbank.model.vo.OrderVO;
 
 @Repository
@@ -16,6 +17,10 @@ public interface MyPageDAO
 			"            where members_idx=#{members_idx} " + 
 			"            order by orders_date desc")
 	List<OrderVO> listMyOrderGoods(String members_idx);
+	
+	@Select("select * from members " + 
+			"            where members_idx=#{members_idx} " )
+	MemberVO givememember(String members_idx);
 	
 	void updateMyInfo(Map memberMap);// mapper에서 구현 ㄱ
 }

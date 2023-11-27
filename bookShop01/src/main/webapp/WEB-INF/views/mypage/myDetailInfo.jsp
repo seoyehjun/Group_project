@@ -148,7 +148,7 @@ function fn_modify_member_info(attribute){
 			//alert("생년 양음년 "+value_gn);
 			value=+value_y+","+value_m+","+value_d+","+value_gn;
 		}else if(attribute=='tel'){
-			var tel1=frm_mod_member.tel1;
+			var tel1=frm_mod_member.tel1;//select태그이다
 			var tel2=frm_mod_member.tel2;
 			var tel3=frm_mod_member.tel3;
 			

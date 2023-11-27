@@ -6,15 +6,11 @@
 	   update members
 			   <set>
 			      <if test=" member_pw!='' and member_pw!=null">
-			        member_pw=#{member_pw},
-			      </if>
-			      
-			      <if test=" member_gender!='' and member_gender!=null">
-			         member_gender=#{member_gender},
+			        members_password=#{member_pw},
 			      </if>
 			      
 			      <if test=" tel1!='' and tel1!=null">
-			         tel1=#{tel1},
+			         members_phone_number=#{tel1},
 			      </if>
 			      
 			      <if test=" tel2!='' and tel2!=null">
@@ -23,18 +19,6 @@
 			      
 			      <if test=" tel3!='' and tel3!=null">
 			         tel3=#{tel3},
-			      </if>
-			      
-			      <if test=" hp1!='' and hp1!=null">
-			         hp1=#{hp1},
-			      </if>
-			      
-			      <if test=" hp2!='' and hp2!=null">
-			         hp2=#{hp2},
-			      </if>
-			      
-			      <if test=" hp3!='' and hp3!=null">
-			         hp3=#{hp3},
 			      </if>
 			      
 			      <if test=" smssts_yn!='' and smssts_yn!=null">

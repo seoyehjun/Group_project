@@ -21,9 +21,15 @@ public class MyPageService
 		return myPageDAO.listMyOrderGoods(members_idx);
 	}
 	
-	public void modifyMyInfo(Map memberMap) throws Exception
+	public MemberVO givememember(String members_idx) throws Exception
 	{
-		String member_id = (String)memberMap.get("member_id");
+		return myPageDAO.givememember(members_idx);
+	}
+	
+	public MemberVO modifyMyInfo(Map memberMap) throws Exception
+	{
+		String members_idx = (String)memberMap.get("members_idx");
 		myPageDAO.updateMyInfo(memberMap);
+		return givememember(members_idx);
 	}
 }
