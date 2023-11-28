@@ -60,7 +60,7 @@ function fn_modify_member_info(attribute){
 			}
 			value_tel2=tel2.value;
 			value_tel3=tel3.value;
-			value=value_tel1+","+value_tel2+", "+value_tel3;
+			value=value_tel1+","+value_tel2+","+value_tel3;
 		}
 		else if(attribute=='email')
 		{

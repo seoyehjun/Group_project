@@ -21,15 +21,15 @@ public class MyPageService
 		return myPageDAO.listMyOrderGoods(members_idx);
 	}
 	
-	public MemberVO givememember(String members_idx) throws Exception
+	public MemberVO givememember(int members_idx) throws Exception
 	{
 		return myPageDAO.givememember(members_idx);
 	}
 	
 	public MemberVO modifyMyInfo(Map memberMap) throws Exception
 	{
-		String members_idx = (String)memberMap.get("members_idx");
+		String members_idx = (String)memberMap.get("members_idx");//return값 보내서 세션 업데이트하기위해
 		myPageDAO.updateMyInfo(memberMap);
-		return givememember(members_idx);
+		return givememember(Integer.parseInt(members_idx));
 	}
 }

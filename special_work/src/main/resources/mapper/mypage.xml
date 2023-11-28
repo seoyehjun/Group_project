@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.itbank.model.dao.MyPageDAO">
 
-<update id="updateMyInfo" 
-parameterType="java.util.HashMap"
->
+<update id="updateMyInfo" parameterType="java.util.Map">
 	   update members
-			   <set>
-			      <if test=" members_password!='' and members_password!=null">
-			        members_password=#{member_pw},
-			      </if>
+		<set>
+			<if test=" members_password!='' and members_password!=null">
+			        members_password=#{members_password, jdbcType=VARCHAR},
+			</if>
 			      
-			      <if test=" members_phone_number!='' and members_phone_number!=null">
-			         members_phone_number=#{tel1},
-			      </if>
+			<if test=" members_phone_number!='' and members_phone_number!=null">
+			        members_phone_number=#{members_phone_number, jdbcType=VARCHAR},
+			</if>
+			         
+			<if test=" members_email!='' and members_email!=null">
+			     members_email=#{members_email, jdbcType=VARCHAR},
+			</if>
 			      
+			<if test=" members_address!='' and members_address!=null">
+			     members_address=#{members_address, jdbcType=VARCHAR},
+			</if>
 			      
-			     
-			      <if test=" members_email!='' and members_email!=null">
-			         members_email=#{members_email},
-			      </if>
-			      
-			    
-			      <if test=" members_address!='' and members_address!=null">
-			         members_address=#{members_address},
-			      </if>
-			      
-			      <if test=" members_detailed_address!='' and members_detailed_address!=null">
-			         members_detailed_address=#{members_detailed_address}
-			      </if>
-			      
-			   </set>
+			<if test=" members_detailed_address!='' and members_detailed_address!=null">
+			    members_detailed_address=#{members_detailed_address, jdbcType=VARCHAR}
+			</if>
+		</set>
 		where 
-		member_id=#{member_id}
+			members_idx=#{members_idx}
+			  
+			    
+			  
 	</update>
 </mapper>
