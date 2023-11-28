@@ -67,17 +67,17 @@
 
     function selectBoxInit(){
     
-     var tel1='${memberInfo.tel1 }';
-     var hp1='${memberInfo.hp1}';
-     var selTel1 = document.getElementById('tel1');
-     var selHp1 = document.getElementById('hp1');
-     var optionTel1 = selTel1.options;
-     var optionHp1 = selHp1.options;
+     var tel1='${memberInfo.tel1 }';//세션에서 정보 받아온다
+     var hp1='${memberInfo.hp1}';//세션에서 정보 받아온다
+     var selTel1 = document.getElementById('tel1');//select태그 옵션
+     var selHp1 = document.getElementById('hp1');//select태그 옵션
+     var optionTel1 = selTel1.options;//옵션 값 리스트
+     var optionHp1 = selHp1.options;//옵션 값 리스트
      var val;
      for(var i=0; i<optionTel1.length;i++){
-       val = optionTel1[i].value;
-       if(tel1 == val){
-    	   optionTel1[i].selected= true;
+       val = optionTel1[i].value;//
+       if(tel1 == val){//tel1이 세션 값이다 val는 옵션 값 리스트이다 
+    	   optionTel1[i].selected= true;//select태그 기본값 선택 완료
         break;
        }
      }  

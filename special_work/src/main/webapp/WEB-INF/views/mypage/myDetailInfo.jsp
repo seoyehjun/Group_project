@@ -1,63 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ include file="../header.jsp" %><%--html body태그만 닫아주자 --%>
-<head>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<head>
 <script>
 
-//도메인 직접 입력 or domain option 선택
-const domainListEl = document.querySelector('#domain-list')
-const domainInputEl = document.querySelector('#domain-txt')
-// select 옵션 변경 시
 
-domainListEl.addEventListener('change', (event) => {
-  // option에 있는 도메인 선택 시
-  if(event.target.value !== "type") {
-    // 선택한 도메인을 input에 입력하고 disabled
-    domainInputEl.value = event.target.value
-    domainInputEl.disabled = true
-  } else { // 직접 입력 시
-    // input 내용 초기화 & 입력 가능하도록 변경
-    domainInputEl.value = ""
-    domainInputEl.disabled = false
-  }
-})
-
-//이위 코드는 이메일 도메인 선택도와준다.
-
-<%--
 window.onload=function()
 {
-  selectBoxInit();
+	selectBoxInit();//select태그 기본값 정하는 함수	
 }
 
-function selectBoxInit(){
+function selectBoxInit()
+{
+	
+	var temp = '<c:out value='${memberInfo.members_phone_number}'/>';//바인딩된 정보 가져온다.
+	var origin_selected_tel = '${memberInfo.members_phone_number.substring(0,3)}';
+	var user_selected_tel = document.getElementById('tel1');
+	var tel_list = user_selected_tel.options;
+	var val;
+	for(var i=0; i<tel_list.length;i++)
+	{
+		val = tel_list[i].value;
+		if(origin_selected_tel == val)
+		{
+			tel_list[i].selected = true;
+			break;
+		}
+	}
+}
 
- var tel1='${memberInfo.tel1 }';
- var hp1='${memberInfo.hp1}';
- var selTel1 = document.getElementById('tel1');
- var selHp1 = document.getElementById('hp1');
- var optionTel1 = selTel1.options;
- var optionHp1 = selHp1.options;
- var val;
- for(var i=0; i<optionTel1.length;i++){
-   val = optionTel1[i].value;
-   if(tel1 == val){
-	   optionTel1[i].selected= true;
-    break;
-   }
- }  
- 
- for(var i=0; i<optionHp1.length;i++){
-     val = optionHp1[i].value;
-     if(hp1 == val){
-    	 optionHp1[i].selected= true;
-      break;
-     }
-   } 
- 
-}--%>
 function fn_modify_member_info(attribute){
 	var value;
 	// alert(member_id);
@@ -108,8 +81,7 @@ function fn_modify_member_info(attribute){
 			value_address2=address2.value;
 			value=value_address1+","+value_address2;
 		}
-		console.log(attribute);
-	 
+		
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
@@ -170,7 +142,7 @@ function fn_modify_member_info(attribute){
    	 
    	 <tr class="dot_line">
    	  <td class="fixed_join">이름</td>
-   	  <td><input name="members_name" type="text" size="20" value="${memberInfo.members_name } disabled"/>
+   	  <td><input name="members_name" type="text" size="20" value="${memberInfo.members_name }" disabled/>
    	 </tr>
    	 
    	 <tr class="dot_line">
@@ -187,8 +159,11 @@ function fn_modify_member_info(attribute){
    	   </select>
    	   
    	 
-   	   -<input type="text" size=4 name="tel2" value="${memberInfo.members_phone_number.substring(3,7) }">
-   	   -<input type="text" size=4 name="tel3" value="${memberInfo.members_phone_number.substring(7,11) }">
+   	  <%--@기준으로 쪼개야 한다. --%>
+   	  <c:set var="origin_tel" value="${memberInfo.members_phone_number }"/>
+   	  <c:set var="refined_tel" value="${fn:split(origin_tel,'-') }"/>
+   	   -<input type="text" size=4 name="tel2" value="${refined_tel[1] }">
+   	   -<input type="text" size=4 name="tel3" value="${refined_tel[2] }">
    	  </td>
    	  
    	  <td>
@@ -233,8 +208,8 @@ function fn_modify_member_info(attribute){
    	 <tr class="dot_line">
    	  <td class="fixed_join">주소</td>
    	  <td>
-   	     주소 :<br><input type="text"  name="address1" size=5 value="${memberInfo.members_address }"><br><br>
-   	     상세주소 :<br><input type="text"  name="address2" size=5 value="${memberInfo.members_detailed_address}">
+   	     주소 :<br><input type="text"  name="address1" size=10 value="${memberInfo.members_address }"><br><br>
+   	     상세주소 :<br><input type="text"  name="address2" size=20 value="${memberInfo.members_detailed_address}">
    	  </td>
    	 
    	  <td>
@@ -249,4 +224,25 @@ function fn_modify_member_info(attribute){
   	
 </form>
 </body>
+
+
+<script>
+//도메인 직접 입력 or domain option 선택
+const domainListEl = document.querySelector('#domain-list')
+const domainInputEl = document.querySelector('#domain-txt')
+// select 옵션 변경 시
+domainListEl.addEventListener('change', (event) => {
+  // option에 있는 도메인 선택 시
+  
+  if(event.target.value !== "non") {
+    // 선택한 도메인을 input에 입력하고 disabled
+    domainInputEl.value = event.target.value
+    domainInputEl.disabled = true
+  } else { // 직접 입력 시
+    // input 내용 초기화 & 입력 가능하도록 변경
+    domainInputEl.value = ""
+    domainInputEl.disabled = false
+  }
+})
+</script>
 </html>

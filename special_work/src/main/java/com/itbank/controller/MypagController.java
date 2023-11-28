@@ -69,7 +69,7 @@ public class MypagController
 		HttpSession session=request.getSession();
 		//MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
 		MemberVO memberVO = myPageService.givememember("1");//세션 받아오면 삭제될코드
-		String  member_id=memberVO.getMembers_idx()+"";
+		String  member_idx=memberVO.getMembers_idx()+"";
 		
 		String temp;
 		if(attribute.equals("tel"))
@@ -91,7 +91,7 @@ public class MypagController
 			memberMap.put(attribute,value);	
 		}
 		
-		memberMap.put("member_id", member_id);
+		memberMap.put("members_idx", member_idx);
 		
 		//수정된 회원 정보를 다시 세션에 저장한다.
 		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);

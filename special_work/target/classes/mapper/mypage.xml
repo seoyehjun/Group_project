@@ -1,52 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itbank.model.dao.MyPageDAO">
-<!-- 
-<update id="updateMyInfo" parameterType="java.util.HashMap">
+
+<update id="updateMyInfo" 
+parameterType="java.util.HashMap"
+>
 	   update members
 			   <set>
-			      <if test=" member_pw!='' and member_pw!=null">
+			      <if test=" members_password!='' and members_password!=null">
 			        members_password=#{member_pw},
 			      </if>
 			      
-			      <if test=" tel1!='' and tel1!=null">
+			      <if test=" members_phone_number!='' and members_phone_number!=null">
 			         members_phone_number=#{tel1},
 			      </if>
 			      
-			      <if test=" tel2!='' and tel2!=null">
-			         tel2=#{tel2},
+			      
+			     
+			      <if test=" members_email!='' and members_email!=null">
+			         members_email=#{members_email},
 			      </if>
 			      
-			      <if test=" tel3!='' and tel3!=null">
-			         tel3=#{tel3},
+			    
+			      <if test=" members_address!='' and members_address!=null">
+			         members_address=#{members_address},
 			      </if>
 			      
-			      <if test=" smssts_yn!='' and smssts_yn!=null">
-			         smssts_yn=#{smssts_yn},
-			      </if>
-			      
-			      <if test=" email1!='' and email1!=null">
-			         email1=#{email1},
-			      </if>
-			      
-			      <if test=" email2!='' and email2!=null">
-			         email2=#{email2},
-			      </if>
-			      
-			      <if test=" emailsts_yn!='' and emailsts_yn!=null">
-			         emailsts_yn=#{emailsts_yn},
-			      </if>
-			      
-			      <if test=" zipcode!='' and zipcode!=null">
-			         zipcode=#{zipcode},
-			      </if>
-			      
-			      <if test=" namujiAddress!='' and namujiAddress!=null">
-			         namujiAddress=#{namujiAddress}
+			      <if test=" members_detailed_address!='' and members_detailed_address!=null">
+			         members_detailed_address=#{members_detailed_address}
 			      </if>
 			      
 			   </set>
 		where 
 		member_id=#{member_id}
-	</update>-->
+	</update>
 </mapper>
