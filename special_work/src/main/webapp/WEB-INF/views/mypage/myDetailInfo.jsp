@@ -82,6 +82,9 @@ function fn_modify_member_info(attribute){
 			value=value_address1+","+value_address2;
 		}
 		
+		
+		//jQuery는 2006년 미국의 존 레식(John Resig)이 뉴욕시 바캠프(Barcamp)에서 처음 소개한 ‘자바 스크립트 라이브러리’입니다.
+		//ajax는 jQuery 기능이다.
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.

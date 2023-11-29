@@ -62,8 +62,12 @@ public class MypagController
 		return "mypage/myDetailInfo";
 	}
 	
+	// Model and View 와 ResponseEntity의 차이에 대한 글
+	// https://velog.io/@dhk22/Spring-MVC-4-Response-ViewResolver-ModelAndView-ResponseEntity-Response-Json-ing
+	// https://velog.io/@wonizizi99/TIL-22.12.19-3Tier-controller-%EC%99%80RestController%EB%8F%99%EC%9E%91%EC%9B%90%EB%A6%AC-ResponseEntity-Httpstatus
+	// https://m.blog.naver.com/nsqfrnidzb/222437153414 RestController에서  ResponseEntity로의 진화
 	@RequestMapping(value="/modifyMyInfo.do" ,method = RequestMethod.POST)
-	public String modifyMyInfo(@RequestParam("attribute")  String attribute,
+	public ResponseEntity modifyMyInfo(@RequestParam("attribute")  String attribute,
 			                 @RequestParam("value")  String value, Model model,
 			               HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		Map<Object,Object> memberMap=new HashMap<Object,Object>();
@@ -107,12 +111,12 @@ public class MypagController
 		session.removeAttribute("memberInfo");//세션 업로드1
 		session.setAttribute("memberInfo", memberVO);//세션 업로드2
 		
-		return "mypage/myDetailInfo";
-		/*String message = null;
+		//return "mypage/myPageMain";
+		String message = null;
 		ResponseEntity resEntity = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		message  = "mod_success";
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-		return resEntity;*/
+		return resEntity;
 	}	
 }
