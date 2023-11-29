@@ -20,7 +20,7 @@ public interface MyPageDAO
 	
 	@Select("select * from members " + 
 			"            where members_idx=#{members_idx} " )
-	MemberVO givememember(String members_idx);
+	MemberVO givememember(int members_idx);
 	
 	void updateMyInfo(Map memberMap);// mapper에서 구현 ㄱ
 }
