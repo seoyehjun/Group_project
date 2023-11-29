@@ -48,6 +48,7 @@ public class FileDownloadController {
 			                 HttpServletResponse response) throws Exception {
 		OutputStream out = response.getOutputStream();
 		String filePath=CURR_IMAGE_REPO_PATH+"\\"+goods_id+"\\"+fileName;
+		//goods_id해당 상품의 id ,  fileName은 해당 상품의 
 		File image=new File(filePath);
 		
 		if (image.exists()) { 

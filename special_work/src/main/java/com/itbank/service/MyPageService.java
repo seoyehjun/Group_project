@@ -18,6 +18,7 @@ public class MyPageService
 	
 	public List<OrderVO> listMyOrderGoods(String members_idx) throws Exception
 	{
+		System.out.println("members_idx: "+members_idx);
 		return myPageDAO.listMyOrderGoods(members_idx);
 	}
 	

@@ -42,10 +42,10 @@ public class MypagController
 		//memberVO = (MemberVO)httpsession.getAttribute("memberInfo");
 		//String members_idx = memberVO.getMembers_idx()+"";//VO 구현해라
 		
-		List<OrderVO> myOrderList = myPageService.listMyOrderGoods("1");//오더 리스트 받아오는 함수 구현해라(위에서 받은 id를 토대로)
-		
-		mav.addObject("myOrderList", myOrderList);
-		mav.setViewName("mypage/myPageMain");
+		List<OrderVO> myOrderList = myPageService.listMyOrderGoods("2");//오더 리스트 받아오는 함수 구현해라(위에서 받은 id를 토대로)
+		System.out.println(myOrderList.get(0).products_idx);
+		httpsession.setAttribute("myOrderList", myOrderList);
+		//mav.setViewName("mypage/myPageMain");//controller사용하면서 경로이름 반환으로 변경
 		System.out.println("컨트롤러 실행됨");
 		return "mypage/myPageMain";
 	}
