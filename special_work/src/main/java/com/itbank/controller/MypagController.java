@@ -119,4 +119,10 @@ public class MypagController
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}	
+	
+	@RequestMapping("/thumbnails")
+	protected void thumbnai
+	{
+		
+	}
 }
