@@ -1,5 +1,9 @@
 package com.itbank.controller;
 
+import net.coobird.thumbnailator.Thumbnails;//pom파일에 의존성 추가해줘야한다. 
+
+import java.io.File;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +27,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itbank.model.vo.MemberVO;
 import com.itbank.model.vo.OrderVO;
 import com.itbank.service.MyPageService;
+
+
 
 @Controller
 @RequestMapping(value="/mypage")
@@ -69,7 +75,9 @@ public class MypagController
 	@RequestMapping(value="/modifyMyInfo.do" ,method = RequestMethod.POST)
 	public ResponseEntity modifyMyInfo(@RequestParam("attribute")  String attribute,
 			                 @RequestParam("value")  String value, Model model,
-			               HttpServletRequest request, HttpServletResponse response)  throws Exception {
+			               HttpServletRequest request, HttpServletResponse response)  throws Exception 
+	{
+		
 		Map<Object,Object> memberMap=new HashMap<Object,Object>();
 		String val_list[]=null;
 		HttpSession session=request.getSession();
@@ -118,11 +126,46 @@ public class MypagController
 		message  = "mod_success";
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
-	}	
+	}
+	
+	@RequestMapping(value="/myOrderDetail" ,method = RequestMethod.GET)
+	public String myOrderDetail(HttpSession httpsession, Model model )
+	{
+		MemberVO sessionowner = (MemberVO)httpsession.getAttribute("memberInfo");
+		
+		//리스트 불러오는 구문(조인해서 구현해라)
+		httpsession.setAttribute("list", 조인결과물 바인딩해라);
+		
+		return "/mypage/myOrderDetail";
+	}
+	
+	
+	
+	private static String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";
 	
 	@RequestMapping("/thumbnails")
-	protected void thumbnai
-	{
+	protected void thumbnails(@RequestParam("fileName") String fileName,
+                            	@RequestParam("goods_id") String goods_id,
+			                 HttpServletResponse response) throws Exception {
+		OutputStream out = response.getOutputStream();
+		String filePath=CURR_IMAGE_REPO_PATH+"\\"+goods_id+"\\"+fileName;
+		//CURR_IMAGE_REPO_PATH경로 아래에
+		//goods_id해당 상품의 id(폴더이름) ,  fileName은 해당 상품의파일이름(이미지)
+		//를 만들어주면 이미지가 뜬다. 
+		File image=new File(filePath);
 		
+		
+		if (image.exists()) { 
+			//https://yermi.tistory.com/entry/Library-%EC%9E%90%EB%B0%94Java%EC%97%90%EC%
+			//84%9C-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80
+			//-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EB%9
+			//D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-Thumbnailator
+			Thumbnails.of(image).size(121,154).outputFormat("png").toOutputStream(out);
+		}
+		byte[] buffer = new byte[1024 * 8];
+		out.write(buffer);
+		out.close();
 	}
+
+	
 }

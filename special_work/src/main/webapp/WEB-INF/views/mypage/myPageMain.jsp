@@ -24,6 +24,7 @@
 				</td>
 			</tr>
 			</c:when>
+			
 			<c:otherwise><%--주문 상품이 존재할 경우 --%>
 			 <c:forEach var="item" items="${ myOrderList }" varStatus="i">
 			  <c:choose>
@@ -43,7 +44,7 @@
 		    <tr><%--실제 상품 --%>
 		    
 		     <td><%--주문번호 --%>
-		      <a href="${contextPath }/mypage/myOrderDetail.do?order_id=${item.orders_idx}"><span>${item.orders_idx }</span></a>
+		      <a href="${contextPath }/mypage/myOrderDetail.do?order_id=${item.products_name}"><span>${item.orders_idx }</span></a>
 		      <%--컨트롤러에서 받아서 주문 상세페이지 띄워주자 --%>
 		     </td>
 		     

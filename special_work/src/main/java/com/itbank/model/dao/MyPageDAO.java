@@ -13,9 +13,12 @@ import com.itbank.model.vo.OrderVO;
 @Repository
 public interface MyPageDAO 
 {
-	@Select("select * from orders " + 
-			"            where members_idx=#{members_idx} " + 
-			"            order by orders_date desc")
+	@Select("select orders_idx, orders_date, orders_status"
+			+ "	from orders o, products p, orders_detailed od "  
+			+ "		where od.orders_idx = o.orders_idx"
+			+ "		and od.products_idx = p.products_idx"
+			+ "		and members_idx=#{members_idx} " 
+			+ "		order by o.orders_date desc")
 	List<OrderVO> listMyOrderGoods(String members_idx);
 	
 	@Select("select * from members " + 

@@ -5,7 +5,7 @@
 
 <h1>배송 현황</h1>
  <div>
-  ${ }
+ 
  </div>
 <h1>1. 주문 상세정보</h1>
 <table class="list_view">
