@@ -50,10 +50,9 @@ public class MypagController
 		//String members_idx = memberVO.getMembers_idx()+"";//VO 구현해라
 		
 		List<O_P_OD_vo> myOrderList = myPageService.listMyOrderGoods("2");//로그인 구현되면 위 두줄 주석 풀고 members_idx받아오면 된다. 
-		System.out.println(myOrderList.get(0).getOrders_idx());//테스트 코드이다 지워도됨...
 		httpsession.setAttribute("myOrderList", myOrderList);//myPageMain에 보낼 정보 바인딩
+		System.out.println("myOrderList size: "+myOrderList.size());
 		//mav.setViewName("mypage/myPageMain");//controller사용하면서 경로이름 반환으로 변경
-		System.out.println("컨트롤러 실행됨");
 		return "mypage/myPageMain";
 	}
 	@RequestMapping(value = "/myDetailInfo", method = RequestMethod.GET)//orderlist바인딩 ,  세션으로부터 memberVO에 정보 바인딩

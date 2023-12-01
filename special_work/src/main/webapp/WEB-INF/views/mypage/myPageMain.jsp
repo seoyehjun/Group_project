@@ -15,7 +15,7 @@
 				<td>주문상태</td>
 				<td>주문취소</td>
 			</tr>
-			
+		<c:set var="orders_status" value="${item.Orders_status }"/>	
 		<c:choose><%--주문한상품이 있을경우 or 없을경우 --%>
 			<c:when test="${ empty myOrderList }"><%--주문 상품이 없을 경우 --%>
 			<tr>
@@ -27,47 +27,32 @@
 			
 			<c:otherwise><%--주문 상품이 존재할 경우 --%>
 			 <c:forEach var="item" items="${ myOrderList }" varStatus="i"><%--myOrderList에는 O_P_OD_vo의 리스트 있다.  --%>
-			  <c:choose>
-			   <c:when test="${pre_order_id != item.getOrders_idx() }">
-			  <c:choose><%--점선 --%>	
-				<c:when test="${ item.getOrders_status() == 'delivery_prepared' }">
-				<%--getOrders_status()라고 하지말고 c:set으로 받은뒤에 비교해보자 --%>
-				  <tr bgcolor="lightgreen">
-				</c:when>
-				<c:when test="${ item.getOrders_status() == 'finished_delivering' }">
-				  <tr bgcolor="lightgray">
-				</c:when>
-				<c:otherwise>
-				 <tr bgcolor="orange">
-				</c:otherwise>
-			  </c:choose>
+			  
 		
 		    <tr><%--실제 상품 --%>
 		    
 		     <td><%--주문번호 --%>
-		      <a href="${contextPath }/mypage/myOrderDetail.do?order_id=${item.getProducts_name()}"><span>${item.getOrders_idx() }</span></a>
+		      <a href="${contextPath }/mypage/myOrderDetail.do?order_id=${item.products_name}"><span>${item.orders_idx }</span></a>
 		      <%--컨트롤러에서 받아서 주문 상세페이지 띄워주자 --%>
 		     </td>
 		     
 		     <td>
-		      <span>${item.getOrders_date() }</span>
+		      <span>${item.orders_date }</span>
 		     </td><%-- 주문 시간 --%>
 		     
 		     
 		     <td align="left"><%--주문row의 상품title --%>
 		      <strong>
-		       <c:forEach var="item2" items="${ myOrderList }" varStatus="j"><%--전체 orders에서 같은 주문에 속한것 모두 한줄에 표시 --%>
-		        <c:if test="${item.getOrders_idx() == item2.getOrders_idx() }">
-		         <a href="${contextpath }/goods/goodsDetail?goods_idx=${item2.getProducts_idx()}">${item2.getProducts_idx() }/${item2.getQuantity() }개
-		         </a><br>                 <%--주문의 products_idx를 주면 상품 상세페이지로 연결되도록 해주세요 --%>
-		        </c:if>
-		       </c:forEach>
+		       <c:if test="${item.orders_idx == item2.orders_idx }">
+		        <a href="${contextpath }/goods/goodsDetail?goods_idx=${item.products_idx}">${item.products_name }/${item.quantity }개
+		        </a><br>                 <%--주문의 products_idx를 주면 상품 상세페이지로 연결되도록 해주세요 --%>
+		       </c:if>
 		      </strong>
 		     </td>     
 		     
 		     <td>
 		      <c:choose>
-		      	<c:when test="${item.orders_status =='Preparing' }">
+		      	<c:when test="${item.orders_status =='배송 준비중' }">
 				  배송 준비중
 		      	</c:when>
 		      	<c:when test="${item.orders_status =='delivering' }">
@@ -87,20 +72,17 @@
 		     
 		     <td><%--배송 취소 기능 --%>
 		      	<c:choose>
-		      	 <c:when test="${item.getOrders_status()='delivery_prepared' }">
-		      	  <input type="button" onClick="fn_cancel_order('${item.getOrders_idx()}')" value="주문취소"/>
+		      	 <c:when test="${item.orders_status='delivery_prepared' }">
+		      	  <input type="button" onClick="fn_cancel_order('${item.orders_idx}')" value="주문취소"/>
 		      	 </c:when>
 		      	 <c:otherwise>
-		      	  <input type="button" onClick="fn_cancel_order('${item.getOrders_idx()}')" value="주문취소" disabled/> 
+		      	  <input type="button" onClick="fn_cancel_order('${item.orders_idx}')" value="주문취소" disabled/> 
 		      	 </c:otherwise>
 		      	</c:choose>
 		     </td>
 		     
 		     
 		    </tr><%--실제 상품 row --%>
-		 	</c:when>
-		 	</c:choose>
-		 	
 			</c:forEach>
 			
 			</c:otherwise><%--주문 상품이 존재할 경우 --%>

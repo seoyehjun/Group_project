@@ -5,16 +5,16 @@ import java.sql.Date;
 public class O_P_OD_vo
 {
 	//ORDERS 테이블
-	private int orders_idx;
-	private Date orders_date;
-	private String orders_status;
+	public int orders_idx;
+	public Date orders_date;
+	public String orders_status;
 	
 	//PRODUCTS 테이블
-	private String products_name;
-	private int products_idx;
+	public String products_name;
+	public int products_idx;
 	
 	//ORDERS_DETAILS 테이블
-	private int quantity;
+	public int quantity;
 
 	public int getOrders_idx() {
 		return orders_idx;
