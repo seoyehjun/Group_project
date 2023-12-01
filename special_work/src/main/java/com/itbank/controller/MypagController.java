@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.model.vo.MemberVO;
+import com.itbank.model.vo.O_P_OD_vo;
 import com.itbank.model.vo.OrderVO;
 import com.itbank.service.MyPageService;
 
@@ -48,9 +49,9 @@ public class MypagController
 		//memberVO = (MemberVO)httpsession.getAttribute("memberInfo");
 		//String members_idx = memberVO.getMembers_idx()+"";//VO 구현해라
 		
-		List<OrderVO> myOrderList = myPageService.listMyOrderGoods("2");//오더 리스트 받아오는 함수 구현해라(위에서 받은 id를 토대로)
-		System.out.println(myOrderList.get(0).products_idx);
-		httpsession.setAttribute("myOrderList", myOrderList);
+		List<O_P_OD_vo> myOrderList = myPageService.listMyOrderGoods("2");//로그인 구현되면 위 두줄 주석 풀고 members_idx받아오면 된다. 
+		System.out.println(myOrderList.get(0).getOrders_idx());//테스트 코드이다 지워도됨...
+		httpsession.setAttribute("myOrderList", myOrderList);//myPageMain에 보낼 정보 바인딩
 		//mav.setViewName("mypage/myPageMain");//controller사용하면서 경로이름 반환으로 변경
 		System.out.println("컨트롤러 실행됨");
 		return "mypage/myPageMain";
@@ -127,7 +128,7 @@ public class MypagController
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
-	
+	/*
 	@RequestMapping(value="/myOrderDetail" ,method = RequestMethod.GET)
 	public String myOrderDetail(HttpSession httpsession, Model model )
 	{
@@ -138,7 +139,7 @@ public class MypagController
 		
 		return "/mypage/myOrderDetail";
 	}
-	
+	*/
 	
 	
 	private static String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";

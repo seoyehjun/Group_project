@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.itbank.model.dao.MyPageDAO;
 import com.itbank.model.vo.MemberVO;
+import com.itbank.model.vo.O_P_OD_vo;
 import com.itbank.model.vo.OrderVO;
 
 @Service

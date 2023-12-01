@@ -1,5 +1,6 @@
 package com.itbank.model.dao;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -8,18 +9,20 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.itbank.model.vo.MemberVO;
+import com.itbank.model.vo.O_P_OD_vo;
 import com.itbank.model.vo.OrderVO;
 
 @Repository
 public interface MyPageDAO 
 {
-	@Select("select orders_idx, orders_date, orders_status"
-			+ "	from orders o, products p, orders_detailed od "  
+	@Select("select o.orders_idx, o.orders_date, o.orders_status"
+			+ ",p.products_name, p.products_idx, od.quantity"
+			+ "	from orders o, products p, ordersd_details od "  
 			+ "		where od.orders_idx = o.orders_idx"
 			+ "		and od.products_idx = p.products_idx"
-			+ "		and members_idx=#{members_idx} " 
+			+ "		and members_idx = #{members_idx} " 
 			+ "		order by o.orders_date desc")
-	List<OrderVO> listMyOrderGoods(String members_idx);
+	List<O_P_OD_vo> listMyOrderGoods(String members_idx);
 	
 	@Select("select * from members " + 
 			"            where members_idx=#{members_idx} " )
