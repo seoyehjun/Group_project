@@ -1,0 +1,39 @@
+Orders_detail VO
+
+O
+orders_idx int
+orders_date date
+orders_status String
+orders_recipient_address String
+orders_detailed_address String
+orders_recipient_phone String
+orders_recipient_name String
+
+OD
+orders_total_quantity int
+
+P
+products_idx int
+products_name String
+products_price int
+
+PI
+img_url String  
+
+C
+color String
+
+ST
+size_product String
+
+
+o.orders_idx, o.orders_date, o.orders_status
+			,o.orders_recipient_address, o.orders_detailed_address
+			,o.orders_recipient_phone, o.orders_recipient_name
+			,od.quantity
+			,p.products_idx, p.products_name, p.products_price 
+			,pi.img_url
+			,c.color
+			,st.size_product
+
+
