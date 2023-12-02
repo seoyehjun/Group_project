@@ -514,38 +514,38 @@ function fn_process_pay_order(){
 				<td>주문금액합계</td>
 			</tr>
 			<tr>
-				<c:forEach var="item" items="${myOrderList }">
+				<c:forEach var="myorderdetail" myorderdetails="${myOrderList }">
 					<td class="goods_image">
-					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
-					    <input   type="hidden" id="h_goods_id" name="h_goods_id" value="${item.goods_id }" />
-					    <input   type="hidden" id="h_goods_fileName" name="h_goods_fileName" value="${item.goods_fileName }" />
+					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${myorderdetail.goods_id }">
+					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${myorderdetail.goods_id}&fileName=${myorderdetail.goods_fileName}">
+					    <input   type="hidden" id="h_goods_id" name="h_goods_id" value="${myorderdetail.goods_id }" />
+					    <input   type="hidden" id="h_goods_fileName" name="h_goods_fileName" value="${myorderdetail.goods_fileName }" />
 					  </a>
 					</td>
 					<td>
 					  <h2>
-					     <a href="${pageContext.request.contextPath}/goods/goods.do?command=goods_detail&goods_id=${item.goods_id }">${item.goods_title }</A>
-					      <input   type="hidden" id="h_goods_title" name="h_goods_title" value="${item.goods_title }" />
+					     <a href="${pageContext.request.contextPath}/goods/goods.do?command=goods_detail&goods_id=${myorderdetail.goods_id }">${myorderdetail.goods_title }</A>
+					      <input   type="hidden" id="h_goods_title" name="h_goods_title" value="${myorderdetail.goods_title }" />
 					  </h2>
 					</td>
 					<td>
-					  <h2>${item.order_goods_qty }개<h2>
-					    <input   type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.order_goods_qty}" />
+					  <h2>${myorderdetail.order_goods_qty }개<h2>
+					    <input   type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${myorderdetail.order_goods_qty}" />
 					</td>
-					<td><h2>${item.goods_sales_price}원 (10% 할인)</h2></td>
+					<td><h2>${myorderdetail.goods_sales_price}원 (10% 할인)</h2></td>
 					<td><h2>0원</h2></td>
-					<td><h2>${1500 *item.order_goods_qty}원</h2></td>
+					<td><h2>${1500 *myorderdetail.order_goods_qty}원</h2></td>
 					<td>
-					  <h2>${item.goods_sales_price * item.order_goods_qty}원</h2>
-					  <input  type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${item.goods_sales_price * item.order_goods_qty}" />
+					  <h2>${myorderdetail.goods_sales_price * myorderdetail.order_goods_qty}원</h2>
+					  <input  type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${myorderdetail.goods_sales_price * myorderdetail.order_goods_qty}" />
 					</td>
 			</tr>
 			<c:set var="final_total_order_price"
-				value="${final_total_order_price+ item.goods_sales_price* item.order_goods_qty}" />
+				value="${final_total_order_price+ myorderdetail.goods_sales_price* myorderdetail.order_goods_qty}" />
 			<c:set var="total_order_price"
-				value="${total_order_price+ item.goods_sales_price* item.order_goods_qty}" />
+				value="${total_order_price+ myorderdetail.goods_sales_price* myorderdetail.order_goods_qty}" />
 			<c:set var="total_order_goods_qty"
-				value="${total_order_goods_qty+item.order_goods_qty }" />
+				value="${total_order_goods_qty+myorderdetail.order_goods_qty }" />
 			</c:forEach>
 		</tbody>
 	</table>

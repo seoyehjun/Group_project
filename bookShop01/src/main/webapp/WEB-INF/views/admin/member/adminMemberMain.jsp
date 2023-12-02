@@ -439,33 +439,33 @@ function fn_detail_search(){
 		     </tr>
 	 </c:when>
 	 <c:otherwise>
-	     <c:forEach var="item" items="${member_list}" varStatus="item_num">
+	     <c:forEach var="myorderdetail" myorderdetails="${member_list}" varStatus="myorderdetail_num">
 	            <tr >       
 					<td width=10%>
 					
-					  <a href="${pageContext.request.contextPath}/admin/member/memberDetail.do?member_id=${item.member_id}">
-					     <strong>${item.member_id}</strong>
+					  <a href="${pageContext.request.contextPath}/admin/member/memberDetail.do?member_id=${myorderdetail.member_id}">
+					     <strong>${myorderdetail.member_id}</strong>
 					  </a>
 					</td>
 					<td width=10%>
-					  <strong>${item.member_name}</strong><br>
+					  <strong>${myorderdetail.member_name}</strong><br>
 					</td>
 					<td width=10% >
-					  <strong>${item.hp1}-${item.hp2}-${item.hp3}</strong><br>
+					  <strong>${myorderdetail.hp1}-${myorderdetail.hp2}-${myorderdetail.hp3}</strong><br>
 					</td>
 					<td width=50%>
-					  <strong>${item.roadAddress}</strong><br>
-					  <strong>${item.jibunAddress}</strong><br>
-					  <strong>${item.namujiAddress}</strong><br>
+					  <strong>${myorderdetail.roadAddress}</strong><br>
+					  <strong>${myorderdetail.jibunAddress}</strong><br>
+					  <strong>${myorderdetail.namujiAddress}</strong><br>
 					</td>
 					<td width=10%>
-					   <c:set var="join_date" value="${item.joinDate}" />
+					   <c:set var="join_date" value="${myorderdetail.joinDate}" />
 					   <c:set var="arr" value="${fn:split(join_date,' ')}" />
 					   <strong><c:out value="${arr[0]}" /></strong>
 				    </td>
 				    <td width=10%>
 				       <c:choose>
-				         <c:when test="${item.del_yn=='N' }">
+				         <c:when test="${myorderdetail.del_yn=='N' }">
 				           <strong>활동중</strong>  
 				         </c:when>
 				         <c:otherwise>

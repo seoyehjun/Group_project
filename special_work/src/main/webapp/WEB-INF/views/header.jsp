@@ -18,21 +18,12 @@
 
 		<h1>Gaba works</h1>
 		<br>
-<nav class="menu">
+		<nav class="menu">
  		<ul>
-			<li><a href="${cpath }">home</a></li>
+			<li><a href="${contextPath }/mypage/">home</a></li>
+			<li><a href="${contextPath }/mypage/myDetailInfo">내정보 수정</a></li>
 		</ul>
 		
-		<ul>
-			<c:if test="${empty user }">
-				<li><a href="${cpath }/account/signUp">회원가입</a></li>
-				<li><a href="${cpath }/account/login">로그인</a></li>
-			</c:if>
-			<c:if test="${not empty user }">
-				<li><a href="${cpath }/account/myPage">${user.nick }</a></li>
-				<li><a href="${cpath }/account/logout">로그아웃</a></li>
-			</c:if>
-		</ul>
 </nav>
 <hr>
 </header>

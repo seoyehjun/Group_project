@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.model.vo.MemberVO;
+import com.itbank.model.vo.O_OD_P_C_S_M_vo;
 import com.itbank.model.vo.O_P_OD_vo;
 import com.itbank.model.vo.OrderVO;
 import com.itbank.service.MyPageService;
@@ -41,7 +42,7 @@ public class MypagController
 	private OrderVO orderVO;//session에서 get해온다.
 	//private MemberVO memberVO;
 	
-	@RequestMapping(value = "/myPageMain", method = RequestMethod.GET)//orderlist바인딩 ,  세션으로부터 memberVO에 정보 바인딩
+	@RequestMapping(value = "/", method = RequestMethod.GET)//orderlist바인딩 ,  세션으로부터 memberVO에 정보 바인딩
 	public String myPageMain(Model model, HttpSession httpsession
 			,HttpServletRequest request)throws Exception
 	{
@@ -49,10 +50,10 @@ public class MypagController
 		//memberVO = (MemberVO)httpsession.getAttribute("memberInfo");
 		//String members_idx = memberVO.getMembers_idx()+"";//VO 구현해라
 		
-		List<O_P_OD_vo> myOrderList = myPageService.listMyOrderGoods("2");//로그인 구현되면 위 두줄 주석 풀고 members_idx받아오면 된다. 
+		//로그인 구현되면 위 두줄 주석 풀고 members_idx받아오면 된다
+		List<O_P_OD_vo> myOrderList = myPageService.listMyOrderGoods("2");
 		httpsession.setAttribute("myOrderList", myOrderList);//myPageMain에 보낼 정보 바인딩
 		System.out.println("myOrderList size: "+myOrderList.size());
-		//mav.setViewName("mypage/myPageMain");//controller사용하면서 경로이름 반환으로 변경
 		return "mypage/myPageMain";
 	}
 	@RequestMapping(value = "/myDetailInfo", method = RequestMethod.GET)//orderlist바인딩 ,  세션으로부터 memberVO에 정보 바인딩
@@ -62,6 +63,7 @@ public class MypagController
 		ModelAndView mav = new ModelAndView();
 		
 		//아래 두코드 두줄은 다른조원이 세션에 memberInfo라는 이름으로 MemberVO데이터를 바인딩 해놓으면 삭제된다.
+		//MemberVO temp_member = httpsession.getAttribute("memberInfo");
 		MemberVO temp_member = myPageService.givememember(3);
 		httpsession.setAttribute("memberInfo", temp_member);//다른 조원이 이미 바인딩 해놓았으면 따로 바인딩 할 필요는 없을것
 		
@@ -86,7 +88,6 @@ public class MypagController
 		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
 		System.out.println("Members_idx: "+memberVO.getMembers_idx());
 		System.out.println("74line");
-		//MemberVO memberVO = myPageService.givememember("memberInfo");//세션 받아오면 삭제될코드
 		String  member_idx=memberVO.getMembers_idx()+"";
 		
 		String temp;
@@ -112,7 +113,7 @@ public class MypagController
 		}
 		
 		memberMap.put("members_idx", member_idx);//수정하고자하는 다른 데이터와 무조건 함께들어가는
-		//members_idx 여기 오류찾느라 5시간 걸림(int형으로 넘겨줘야  mapper에서 오류 안생김)
+		//members_idx (int형으로 넘겨줘야  mapper에서 오류 안생김)
 		
 		//수정된 회원 정보를 다시 세션에 저장한다.
 		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);//수정 마친 후 memberVO 
@@ -127,18 +128,17 @@ public class MypagController
 		resEntity =new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}
-	/*
+	
 	@RequestMapping(value="/myOrderDetail" ,method = RequestMethod.GET)
-	public String myOrderDetail(HttpSession httpsession, Model model )
+	public String myOrderDetail(HttpSession httpsession, Model model, @RequestParam("orders_idx") int orders_idx )
+	throws Exception
 	{
-		MemberVO sessionowner = (MemberVO)httpsession.getAttribute("memberInfo");
-		
-		//리스트 불러오는 구문(조인해서 구현해라)
-		httpsession.setAttribute("list", 조인결과물 바인딩해라);
+		O_OD_P_C_S_M_vo myorderdetail =  myPageService.getOrderDetail(orders_idx);
+		httpsession.setAttribute("myorderdetail", myorderdetail );
 		
 		return "/mypage/myOrderDetail";
 	}
-	*/
+	
 	
 	
 	private static String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";

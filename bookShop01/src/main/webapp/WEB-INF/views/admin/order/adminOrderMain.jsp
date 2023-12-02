@@ -484,14 +484,14 @@ function fn_detail_search(){
 		     </tr>
 	 </c:when>
 	 <c:otherwise>
-     <c:forEach var="item" items="${newOrderList}" varStatus="i">
+     <c:forEach var="myorderdetail" myorderdetails="${newOrderList}" varStatus="i">
         <c:choose>
-          <c:when test="${item.order_id != pre_order_id }">  
+          <c:when test="${myorderdetail.order_id != pre_order_id }">  
             <c:choose>
-              <c:when test="${item.delivery_state=='delivery_prepared' }">
+              <c:when test="${myorderdetail.delivery_state=='delivery_prepared' }">
                 <tr  bgcolor="lightgreen">    
               </c:when>
-              <c:when test="${item.delivery_state=='finished_delivering' }">
+              <c:when test="${myorderdetail.delivery_state=='finished_delivering' }">
                 <tr  bgcolor="lightgray">    
               </c:when>
               <c:otherwise>
@@ -499,23 +499,23 @@ function fn_detail_search(){
               </c:otherwise>
             </c:choose>   
 				 <td width=10%>
-				   <a href="javascript:fn_detail_order('${item.order_id}')">
-				     <strong>${item.order_id}</strong>
+				   <a href="javascript:fn_detail_order('${myorderdetail.order_id}')">
+				     <strong>${myorderdetail.order_id}</strong>
 				   </a>
 				</td>
 				<td width=20%>
-				 <strong>${item.pay_order_time }</strong> 
+				 <strong>${myorderdetail.pay_order_time }</strong> 
 				</td>
 				<td width=50% align=left >
-				    <strong>주문자:${item.orderer_name}</strong><br>
-				  <strong>주문자 번화번호:${item.orderer_hp}</strong><br>
-				  <strong>수령자:${item.receiver_name}</strong><br>
-				  <strong>수령자 번화번호:${item.receiver_hp1}-${item.receiver_hp2}-${item.receiver_hp3}</strong><br>
-				  <strong>주문상품명(수량):${item.goods_title}(${item.order_goods_qty})</strong><br>
-				     <c:forEach var="item2" items="${newOrderList}" varStatus="j">
+				    <strong>주문자:${myorderdetail.orderer_name}</strong><br>
+				  <strong>주문자 번화번호:${myorderdetail.orderer_hp}</strong><br>
+				  <strong>수령자:${myorderdetail.receiver_name}</strong><br>
+				  <strong>수령자 번화번호:${myorderdetail.receiver_hp1}-${myorderdetail.receiver_hp2}-${myorderdetail.receiver_hp3}</strong><br>
+				  <strong>주문상품명(수량):${myorderdetail.goods_title}(${myorderdetail.order_goods_qty})</strong><br>
+				     <c:forEach var="myorderdetail2" myorderdetails="${newOrderList}" varStatus="j">
 				       <c:if test="${j.index > i.index }" >
-				          <c:if  test="${item.order_id ==item2.order_id}" >
-				            <strong>주문상품명(수량):${item2.goods_title}(${item2.order_goods_qty})</strong><br>
+				          <c:if  test="${myorderdetail.order_id ==myorderdetail2.order_id}" >
+				            <strong>주문상품명(수량):${myorderdetail2.goods_title}(${myorderdetail2.order_goods_qty})</strong><br>
 				      </c:if>   
 				       </c:if>
 				    </c:forEach> 
@@ -523,35 +523,35 @@ function fn_detail_search(){
 				<td width=10%>
 				 <select name="s_delivery_state${i.index }"  id="s_delivery_state${i.index }">
 				 <c:choose>
-				   <c:when test="${item.delivery_state=='delivery_prepared' }">
+				   <c:when test="${myorderdetail.delivery_state=='delivery_prepared' }">
 				     <option  value="delivery_prepared" selected>배송준비중</option>
 				     <option  value="delivering">배송중</option>
 				     <option  value="finished_delivering">배송완료</option>
 				     <option  value="cancel_order">주문취소</option>
 				     <option  value="returning_goods">반품</option>
 				   </c:when>
-				    <c:when test="${item.delivery_state=='delivering' }">
+				    <c:when test="${myorderdetail.delivery_state=='delivering' }">
 				    <option  value="delivery_prepared" >배송준비중</option>
 				     <option  value="delivering" selected >배송중</option>
 				     <option  value="finished_delivering">배송완료</option>
 				     <option  value="cancel_order">주문취소</option>
 				     <option  value="returning_goods">반품</option>
 				   </c:when>
-				   <c:when test="${item.delivery_state=='finished_delivering' }">
+				   <c:when test="${myorderdetail.delivery_state=='finished_delivering' }">
 				    <option  value="delivery_prepared" >배송준비중</option>
 				     <option  value="delivering"  >배송중</option>
 				     <option  value="finished_delivering" selected>배송완료</option>
 				     <option  value="cancel_order">주문취소</option>
 				     <option  value="returning_goods">반품</option>
 				   </c:when>
-				   <c:when test="${item.delivery_state=='cancel_order' }">
+				   <c:when test="${myorderdetail.delivery_state=='cancel_order' }">
 				    <option  value="delivery_prepared" >배송준비중</option>
 				     <option  value="delivering"  >배송중</option>
 				     <option  value="finished_delivering" >배송완료</option>
 				     <option  value="cancel_order" selected>주문취소</option>
 				     <option  value="returning_goods">반품</option>
 				   </c:when>
-				   <c:when test="${item.delivery_state=='returning_goods' }">
+				   <c:when test="${myorderdetail.delivery_state=='returning_goods' }">
 				    <option  value="delivery_prepared" >배송준비중</option>
 				     <option  value="delivering"  >배송중</option>
 				     <option  value="finished_delivering" >배송완료</option>
@@ -562,12 +562,12 @@ function fn_detail_search(){
 				 </select> 
 				</td>
 				<td width=10%>
-			     <input  type="button" value="배송수정"  onClick="fn_modify_order_state('${item.order_id}','s_delivery_state${i.index}')"/>
+			     <input  type="button" value="배송수정"  onClick="fn_modify_order_state('${myorderdetail.order_id}','s_delivery_state${i.index}')"/>
 			    </td>
 			</tr>
 		</c:when>
 		</c:choose>	
-		<c:set  var="pre_order_id" value="${item.order_id }" />
+		<c:set  var="pre_order_id" value="${myorderdetail.order_id }" />
 	</c:forEach>
 	</c:otherwise>
   </c:choose>	

@@ -228,7 +228,7 @@
 		slides.css({
 			'float': 'left',
 			'position': 'relative',
-			'display' : 'list-item'
+			'display' : 'list-myorderdetail'
 		});
 		
 		$wrapper.prependTo($container);

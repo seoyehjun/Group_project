@@ -121,7 +121,7 @@ function fn_modify_member_info(attribute){
    	
    	 <tr class="dot_line">
    	  <td class="fixed_join">아이디</td>
-   	  <td><input name="members_idx" type="text" size="20" value="${memberInfo.members_idx }" disabled/></td>
+   	  <td><input name="members_idx" type="text" size="20" value="${memberInfo.members_id }" disabled/></td>
    	  <%--memberInfo세션 바인딩 해주세요--%>
    	  <td></td>
    	 </tr>

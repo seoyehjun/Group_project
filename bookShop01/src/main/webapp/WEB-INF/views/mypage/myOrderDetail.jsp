@@ -18,38 +18,38 @@
 				<td>예상적립금</td>
 				<td>주문금액합계</td>
 			</tr>
-			<c:forEach var="item" items="${myOrderList }">
+			<c:forEach var="myorderdetail" myorderdetails="${myOrderList }">
 			<tr>
-				    <td> ${item.order_id}</td>
+				    <td> ${myorderdetail.order_id}</td>
 				    
-				    <td> ${item.pay_order_time}</td>
+				    <td> ${myorderdetail.pay_order_time}</td>
 				    
 				    <%--이미지에 하이퍼링크 --%>
 					<td class="goods_image">
-					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
-					    <IMG width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
+					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${myorderdetail.goods_id }">
+					    <IMG width="75" alt=""  src="${contextPath}/thumbnails.do?goods_id=${myorderdetail.goods_id}&fileName=${myorderdetail.goods_fileName}">
 					  </a>
 					</td>
 					
 					<%--상품명에 하이퍼링크 --%>
 					<td>
 					  <h2>
-					     <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item. goods_title }</a>
+					     <a href="${contextPath}/goods/goodsDetail.do?goods_id=${myorderdetail.goods_id }">${myorderdetail. goods_title }</a>
 					  </h2>
 					</td>
 					
 					<td>
-					  <h2>${item.order_goods_qty }개<h2>
+					  <h2>${myorderdetail.order_goods_qty }개<h2>
 					</td>
 					
-					<td><h2>${item.order_goods_qty *item.goods_sales_price}원 (10% 할인)</h2></td>
+					<td><h2>${myorderdetail.order_goods_qty *myorderdetail.goods_sales_price}원 (10% 할인)</h2></td>
 					
 					<td><h2>0원</h2></td>
 					
-					<td><h2>${1500 *item.order_goods_qty }원</h2></td>
+					<td><h2>${1500 *myorderdetail.order_goods_qty }원</h2></td>
 					
 					<td>
-					  <h2>${item.order_goods_qty *item.goods_sales_price}원</h2>
+					  <h2>${myorderdetail.order_goods_qty *myorderdetail.goods_sales_price}원</h2>
 					</td>
 			</tr>
 			</c:forEach>

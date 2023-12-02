@@ -123,7 +123,7 @@
 
   var reset = function (ev, $toReset) {
     var stickies = stickyboxes;
-    if ($toReset) { // just resetting selected items
+    if ($toReset) { // just resetting selected myorderdetails
       stickies = [$toReset];
     }
     $.each(stickies, function(i, $sb) {

@@ -15,7 +15,7 @@
 			<th>가입일</th>
 		</tr>
 		
-		<c:forEach var="row" items="${list }">
+		<c:forEach var="row" myorderdetails="${list }">
 		<tr>
 			<td>${row.idx }</td>
 			<td>${row.userid }</td>

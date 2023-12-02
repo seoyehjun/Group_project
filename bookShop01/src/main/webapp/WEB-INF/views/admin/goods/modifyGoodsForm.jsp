@@ -432,25 +432,25 @@ function fn_modify_goods(goods_id, attribute){
 				<h4>상품이미지</h4>
 				 <table>
 					 <tr>
-					<c:forEach var="item" items="${imageFileList }"  varStatus="itemNum">
+					<c:forEach var="myorderdetail" myorderdetails="${imageFileList }"  varStatus="myorderdetailNum">
 			        <c:choose>
-			            <c:when test="${item.fileType=='main_image' }">
+			            <c:when test="${myorderdetail.fileType=='main_image' }">
 			              <tr>
 						    <td>메인 이미지</td>
 						    <td>
-							  <input type="file"  id="main_image"  name="main_image"  onchange="readURL(this,'preview${itemNum.count}');" />
-						      <%-- <input type="text" id="image_id${itemNum.count }"  value="${item.fileName }" disabled  /> --%>
-							  <input type="hidden"  name="image_id" value="${item.image_id}"  />
+							  <input type="file"  id="main_image"  name="main_image"  onchange="readURL(this,'preview${myorderdetailNum.count}');" />
+						      <%-- <input type="text" id="image_id${myorderdetailNum.count }"  value="${myorderdetail.fileName }" disabled  /> --%>
+							  <input type="hidden"  name="image_id" value="${myorderdetail.image_id}"  />
 							<br>
 						</td>
 						<td>
-						  <img  id="preview${itemNum.count }"   width=200 height=200 src="${contextPath}/download.do?goods_id=${item.goods_id}&fileName=${item.fileName}" />
+						  <img  id="preview${myorderdetailNum.count }"   width=200 height=200 src="${contextPath}/download.do?goods_id=${myorderdetail.goods_id}&fileName=${myorderdetail.fileName}" />
 						</td>
 						<td>
 						  &nbsp;&nbsp;&nbsp;&nbsp;
 						</td>
 						 <td>
-						 <input  type="button" value="수정"  onClick="modifyImageFile('main_image','${item.goods_id}','${item.image_id}','${item.fileType}')"/>
+						 <input  type="button" value="수정"  onClick="modifyImageFile('main_image','${myorderdetail.goods_id}','${myorderdetail.image_id}','${myorderdetail.fileType}')"/>
 						</td> 
 					</tr>
 					<tr>
@@ -460,23 +460,23 @@ function fn_modify_goods(goods_id, attribute){
 					</tr>
 			         </c:when>
 			         <c:otherwise>
-			           <tr  id="${itemNum.count-1}">
-						<td>상세 이미지${itemNum.count-1 }</td>
+			           <tr  id="${myorderdetailNum.count-1}">
+						<td>상세 이미지${myorderdetailNum.count-1 }</td>
 						<td>
-							<input type="file" name="detail_image"  id="detail_image"   onchange="readURL(this,'preview${itemNum.count}');" />
-							<%-- <input type="text" id="image_id${itemNum.count }"  value="${item.fileName }" disabled  /> --%>
-							<input type="hidden"  name="image_id" value="${item.image_id }"  />
+							<input type="file" name="detail_image"  id="detail_image"   onchange="readURL(this,'preview${myorderdetailNum.count}');" />
+							<%-- <input type="text" id="image_id${myorderdetailNum.count }"  value="${myorderdetail.fileName }" disabled  /> --%>
+							<input type="hidden"  name="image_id" value="${myorderdetail.image_id }"  />
 							<br>
 						</td>
 						<td>
-						  <img  id="preview${itemNum.count }"   width=200 height=200 src="${contextPath}/download.do?goods_id=${item.goods_id}&fileName=${item.fileName}">
+						  <img  id="preview${myorderdetailNum.count }"   width=200 height=200 src="${contextPath}/download.do?goods_id=${myorderdetail.goods_id}&fileName=${myorderdetail.fileName}">
 						</td>
 						<td>
 						  &nbsp;&nbsp;&nbsp;&nbsp;
 						</td>
 						 <td>
-						 <input  type="button" value="수정"  onClick="modifyImageFile('detail_image','${item.goods_id}','${item.image_id}','${item.fileType}')"/>
-						  <input  type="button" value="삭제"  onClick="deleteImageFile('${item.goods_id}','${item.image_id}','${item.fileName}','${itemNum.count-1}')"/>
+						 <input  type="button" value="수정"  onClick="modifyImageFile('detail_image','${myorderdetail.goods_id}','${myorderdetail.image_id}','${myorderdetail.fileType}')"/>
+						  <input  type="button" value="삭제"  onClick="deleteImageFile('${myorderdetail.goods_id}','${myorderdetail.image_id}','${myorderdetail.fileName}','${myorderdetailNum.count-1}')"/>
 						</td> 
 					</tr>
 					<tr>
@@ -490,7 +490,7 @@ function fn_modify_goods(goods_id, attribute){
 			    <tr align="center">
 			      <td colspan="3">
 				      <div id="d_file">
-						  <%-- <img  id="preview${itemNum.count }"   width=200 height=200 src="${contextPath}/download.do?goods_id=${item.goods_id}&fileName=${item.fileName}" /> --%>
+						  <%-- <img  id="preview${myorderdetailNum.count }"   width=200 height=200 src="${contextPath}/download.do?goods_id=${myorderdetail.goods_id}&fileName=${myorderdetail.fileName}" /> --%>
 				      </div>
 			       </td>
 			    </tr>

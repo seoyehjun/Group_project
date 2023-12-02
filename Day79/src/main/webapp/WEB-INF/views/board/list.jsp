@@ -12,7 +12,7 @@
 			<th>작성일</th>
 		</tr>
 		
-		<c:forEach var="row" items="${list }">
+		<c:forEach var="row" myorderdetails="${list }">
 		<tr>
 			<td>${row.idx }</td>
 			<td><a href="${cpath }/board/view/${row.idx }">
