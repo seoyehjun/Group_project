@@ -12,8 +12,8 @@
         /* IMPORTANT: i know the variable is called ...seconds but it's 
         in milliseconds ( multiplied with 1000) '*/
         
-        /*move he last list myorderdetail before the first myorderdetail. The purpose of this is 
-        if the user clicks to slide left he will be able to see the last myorderdetail.*/
+        /*move he last list item before the first item. The purpose of this is 
+        if the user clicks to slide left he will be able to see the last item.*/
         $('#carousel_ul li:first').before($('#carousel_ul li:last')); 
         
         //check if auto sliding is enabled
@@ -65,17 +65,17 @@
 //slide function  
 function slide(where){
     
-            //get the myorderdetail width
-            var myorderdetail_width = $('#carousel_ul li').outerWidth() + 10;
+            //get the item width
+            var item_width = $('#carousel_ul li').outerWidth() + 10;
             
             /* using a if statement and the where variable check 
             we will check where the user wants to slide (left or right)*/
             if(where == 'left'){
                 //...calculating the new left indent of the unordered list (ul) for left sliding
-                var left_indent = parseInt($('#carousel_ul').css('left')) + myorderdetail_width;
+                var left_indent = parseInt($('#carousel_ul').css('left')) + item_width;
             }else{
                 //...calculating the new left indent of the unordered list (ul) for right sliding
-                var left_indent = parseInt($('#carousel_ul').css('left')) - myorderdetail_width;
+                var left_indent = parseInt($('#carousel_ul').css('left')) - item_width;
             
             }
             
@@ -84,12 +84,12 @@ function slide(where){
             $('#carousel_ul:not(:animated)').animate({'left' : left_indent},500,function(){    
                 
                 /* when the animation finishes use the if statement again, and make an ilussion
-                of infinity by changing place of last or first myorderdetail*/
+                of infinity by changing place of last or first item*/
                 if(where == 'left'){
-                    //...and if it slided to left we put the last myorderdetail before the first myorderdetail
+                    //...and if it slided to left we put the last item before the first item
                     $('#carousel_ul li:first').before($('#carousel_ul li:last'));
                 }else{
-                    //...and if it slided to right we put the first myorderdetail after the last myorderdetail
+                    //...and if it slided to right we put the first item after the last item
                     $('#carousel_ul li:last').after($('#carousel_ul li:first')); 
                 }
                 

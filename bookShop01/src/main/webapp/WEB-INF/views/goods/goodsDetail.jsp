@@ -232,7 +232,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 			<div class="tab_content" id="tab1">
 				<h4>책소개</h4>
 				<p>${fn:replace(goods.goods_intro,crcn,br)}</p>
-				<c:forEach var="image" myorderdetails="${imageList }">
+				<c:forEach var="image" items="${imageList }">
 					<img 
 						src="${contextPath}/download.do?goods_id=${goods.goods_id}&fileName=${image.fileName}">
 				</c:forEach>

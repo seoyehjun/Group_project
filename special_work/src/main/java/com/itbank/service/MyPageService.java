@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itbank.model.dao.MyPageDAO;
+import com.itbank.model.vo.Cart_vo;
 import com.itbank.model.vo.MemberVO;
 import com.itbank.model.vo.O_OD_P_C_S_M_vo;
 import com.itbank.model.vo.O_P_OD_vo;
@@ -17,6 +18,11 @@ public class MyPageService
 {
 	@Autowired
 	private MyPageDAO myPageDAO;
+	
+	public List<Cart_vo> listMyCart(String members_idx) throws Exception
+	{
+		return myPageDAO.listMyCart(members_idx);
+	}
 	
 	public List<O_P_OD_vo> listMyOrderGoods(String members_idx) throws Exception
 	{

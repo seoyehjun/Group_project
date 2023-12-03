@@ -163,30 +163,30 @@ function fn_cancel_order(order_id){
 		     </tr>
 	 </c:when>
 	 <c:otherwise> 
-     <c:forEach var="myorderdetail" myorderdetails="${myOrderHistList }" varStatus="i">
+     <c:forEach var="item" items="${myOrderHistList }" varStatus="i">
         <c:choose>
-          <c:when test="${myorderdetail.order_id != pre_order_id }">   
+          <c:when test="${item.order_id != pre_order_id }">   
             <tr>       
 				<td>
-				  <a href="${contextPath}/mypage/myOrderDetail.do?order_id=${myorderdetail.order_id }"><strong>${myorderdetail.order_id }</strong>  </a>
+				  <a href="${contextPath}/mypage/myOrderDetail.do?order_id=${item.order_id }"><strong>${item.order_id }</strong>  </a>
 				</td>
 				<td >
-				 <strong>${myorderdetail.pay_order_time }</strong> 
+				 <strong>${item.pay_order_time }</strong> 
 				</td>
 				<td> 
 				    <strong>
-					   <c:forEach var="myorderdetail2" myorderdetails="${myOrderHistList}" varStatus="j">
-				          <c:if  test="${myorderdetail.order_id ==myorderdetail2.order_id}" >
-				            <a href="${contextPath}/goods/goodsDetail.do?goods_id=${myorderdetail2.goods_id }">${myorderdetail2.goods_title }</a><br>
+					   <c:forEach var="item2" items="${myOrderHistList}" varStatus="j">
+				          <c:if  test="${item.order_id ==item2.order_id}" >
+				            <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item2.goods_id }">${item2.goods_title }</a><br>
 				         </c:if>   
 					 </c:forEach>
 					 </strong>
 				</td>
 				<td>
 				   <strong>
-				      <c:forEach var="myorderdetail2" myorderdetails="${myOrderHistList}" varStatus="j">
-				          <c:if  test="${myorderdetail.order_id ==myorderdetail2.order_id}" >
-				             ${myorderdetail.goods_sales_price*myorderdetail.order_goods_qty }원/${myorderdetail.order_goods_qty }<br>
+				      <c:forEach var="item2" items="${myOrderHistList}" varStatus="j">
+				          <c:if  test="${item.order_id ==item2.order_id}" >
+				             ${item.goods_sales_price*item.order_goods_qty }원/${item.order_goods_qty }<br>
 				         </c:if>   
 					 </c:forEach>
 				   </strong>
@@ -194,42 +194,42 @@ function fn_cancel_order(order_id){
 				<td>
 				  <strong>
 				    <c:choose>
-					    <c:when test="${myorderdetail.delivery_state=='delivery_prepared' }">
+					    <c:when test="${item.delivery_state=='delivery_prepared' }">
 					       배송준비중
 					    </c:when>
-					    <c:when test="${myorderdetail.delivery_state=='delivering' }">
+					    <c:when test="${item.delivery_state=='delivering' }">
 					       배송중
 					    </c:when>
-					    <c:when test="${myorderdetail.delivery_state=='finished_delivering' }">
+					    <c:when test="${item.delivery_state=='finished_delivering' }">
 					       배송완료
 					    </c:when>
-					    <c:when test="${myorderdetail.delivery_state=='cancel_order' }">
+					    <c:when test="${item.delivery_state=='cancel_order' }">
 					       주문취소
 					    </c:when>
-					    <c:when test="${myorderdetail.delivery_state=='returning_goods' }">
+					    <c:when test="${item.delivery_state=='returning_goods' }">
 					       반품
 					    </c:when>
 				  </c:choose>
 				  </strong>
 				</td>
 				<td>
-				 <strong>${myorderdetail.orderer_name }</strong> 
+				 <strong>${item.orderer_name }</strong> 
 				</td>
 				<td>
-					<strong>${myorderdetail.receiver_name }</strong>
+					<strong>${item.receiver_name }</strong>
 				</td>
 				<td>
 			     <c:choose>
-			   <c:when test="${myorderdetail.delivery_state=='delivery_prepared'}">
-			       <input  type="button" onClick="fn_cancel_order('${myorderdetail.order_id}')" value="주문취소"  />
+			   <c:when test="${item.delivery_state=='delivery_prepared'}">
+			       <input  type="button" onClick="fn_cancel_order('${item.order_id}')" value="주문취소"  />
 			   </c:when>
 			   <c:otherwise>
-			      <input  type="button" onClick="fn_cancel_order('${myorderdetail.order_id}')" value="주문취소" disabled />
+			      <input  type="button" onClick="fn_cancel_order('${item.order_id}')" value="주문취소" disabled />
 			   </c:otherwise>
 			  </c:choose>
 			    </td>
 			</tr>
-			<c:set  var="pre_order_id" value="${myorderdetail.order_id }" />
+			<c:set  var="pre_order_id" value="${item.order_id }" />
 		   </c:when>	
 	  </c:choose>		
 	</c:forEach>

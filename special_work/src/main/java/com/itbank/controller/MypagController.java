@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itbank.model.vo.Cart_vo;
 import com.itbank.model.vo.MemberVO;
 import com.itbank.model.vo.O_OD_P_C_S_M_vo;
 import com.itbank.model.vo.O_P_OD_vo;
@@ -41,6 +42,15 @@ public class MypagController
 	
 	private OrderVO orderVO;//session에서 get해온다.
 	//private MemberVO memberVO;
+	
+	@RequestMapping(value="/myCartList", method = RequestMethod.GET)
+	public String myCartList(Model model, HttpSession httpsession, HttpServletRequest request) throws Exception
+	{
+		List<Cart_vo> mycartlist = myPageService.listMyCart("3");
+		httpsession.setAttribute("mycartlist", mycartlist);
+		return "mypage/myCartList";
+	}
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)//orderlist바인딩 ,  세션으로부터 memberVO에 정보 바인딩
 	public String myPageMain(Model model, HttpSession httpsession
@@ -141,7 +151,7 @@ public class MypagController
 	
 	
 	
-	private static String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";
+	private static String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";//해당경로 아래에 상품 idx\img_url형식으로 이미지 넣어주면 된다.
 	
 	@RequestMapping("/thumbnails")
 	protected void thumbnails(@RequestParam("fileName") String fileName,
@@ -159,7 +169,7 @@ public class MypagController
 			//https://yermi.tistory.com/entry/Library-%EC%9E%90%EB%B0%94Java%EC%97%90%EC%
 			//84%9C-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80
 			//-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EB%9
-			//D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-Thumbnailator
+			//D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-Thumbnailator -->섬네일 사용법
 			Thumbnails.of(image).size(121,154).outputFormat("png").toOutputStream(out);
 		}
 		byte[] buffer = new byte[1024 * 8];

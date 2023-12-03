@@ -14,8 +14,7 @@
 	  init();
 	}
 	
-	function init()
-	{
+	function init(){
 		alert("주문을 취소했습니다.");
 	}
 	</script>
@@ -57,91 +56,74 @@ function fn_cancel_order(order_id){
          <c:when test="${ empty myOrderList  }">
 		  <tr>
 		    <td colspan=5 class="fixed">
-				  <strong>주문한 상품이 없습니다. </strong>
+				  <strong>주문한 상품이 없습니다.</strong>
 		    </td>
 		  </tr>
         </c:when>
-        <c:otherwise><%--주문 상품이 존재할 경우 --%>
-	      <c:forEach var="myorderdetail" myorderdetails="${myOrderList }"  varStatus="i">
+        <c:otherwise>
+	      <c:forEach var="item" items="${myOrderList }"  varStatus="i">
 	       <c:choose> 
-              <c:when test="${ pre_order_id != myorderdetail.order_id}">
-              <%--같은 order_id 이라면 한개의 칸에 나타낸다 88번쯤에 이중for문 을 통해 --%>
-              <%--그럼으로 같은 order_id라면 그냥 지나간다 --%>
+              <c:when test="${ pre_order_id != item.order_id}">
                 <c:choose>
-	              <c:when test="${myorderdetail.delivery_state == 'delivery_prepared' }">
+	              <c:when test="${item.delivery_state=='delivery_prepared' }">
 	                <tr  bgcolor="lightgreen">    
 	              </c:when>
-	              <c:when test="${myorderdetail.delivery_state == 'finished_delivering' }">
+	              <c:when test="${item.delivery_state=='finished_delivering' }">
 	                <tr  bgcolor="lightgray">    
 	              </c:when>
 	              <c:otherwise>
 	                <tr  bgcolor="orange">   
 	              </c:otherwise>
 	            </c:choose> 
-           
-            <tr><%--실제 상품 --%>
-             
-             <td><%--주문번호 --%>
-		       <a href="${contextPath}/mypage/myOrderDetail.do?order_id=${myorderdetail.order_id }"><span>${myorderdetail.order_id }</span>  </a>
+            <tr>
+             <td>
+		       <a href="${contextPath}/mypage/myOrderDetail.do?order_id=${item.order_id }"><span>${item.order_id }</span>  </a>
 		     </td>
-		   
-		    <td>
-		    <span>${myorderdetail.pay_order_time }</span>
-		    </td>
-			
+		    <td><span>${item.pay_order_time }</span></td>
 			<td align="left">
 			   <strong>
-			      <c:forEach var="myorderdetail2" myorderdetails="${myOrderList}" varStatus="j">
-			          <c:if  test="${myorderdetail.order_id ==myorderdetail2.order_id}" >
-			            <a href="${contextPath}/goods/goodsDetail.do?goods_id=${myorderdetail2.goods_id }">${myorderdetail2.goods_title }/${myorderdetail.order_goods_qty }개</a><br>
+			      <c:forEach var="item2" items="${myOrderList}" varStatus="j">
+			          <c:if  test="${item.order_id ==item2.order_id}" >
+			            <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item2.goods_id }">${item2.goods_title }/${item.order_goods_qty }개</a><br>
 			         </c:if>   
 				 </c:forEach>
-				</strong>
-				
-			</td>
-			
+				</strong></td>
 			<td>
 			  <c:choose>
-			    <c:when test="${myorderdetail.delivery_state=='delivery_prepared' }">
+			    <c:when test="${item.delivery_state=='delivery_prepared' }">
 			       배송준비중
 			    </c:when>
-			    <c:when test="${myorderdetail.delivery_state=='delivering' }">
+			    <c:when test="${item.delivery_state=='delivering' }">
 			       배송중
 			    </c:when>
-			    <c:when test="${myorderdetail.delivery_state=='finished_delivering' }">
+			    <c:when test="${item.delivery_state=='finished_delivering' }">
 			       배송완료
 			    </c:when>
-			    <c:when test="${myorderdetail.delivery_state=='cancel_order' }">
+			    <c:when test="${item.delivery_state=='cancel_order' }">
 			       주문취소
 			    </c:when>
-			    <c:when test="${myorderdetail.delivery_state=='returning_goods' }">
+			    <c:when test="${item.delivery_state=='returning_goods' }">
 			       반품완료
 			    </c:when>
 			  </c:choose>
 			</td>
-			
-			<td><%--배송 취소 기능 --%>
+			<td>
 			  <c:choose>
-			   <c:when test="${myorderdetail.delivery_state=='delivery_prepared'}">
-			       <input  type="button" onClick="fn_cancel_order('${myorderdetail.order_id}')" value="주문취소"  />
+			   <c:when test="${item.delivery_state=='delivery_prepared'}">
+			       <input  type="button" onClick="fn_cancel_order('${item.order_id}')" value="주문취소"  />
 			   </c:when>
 			   <c:otherwise>
-			      <input  type="button" onClick="fn_cancel_order('${myorderdetail.order_id}')" value="주문취소" disabled />
+			      <input  type="button" onClick="fn_cancel_order('${item.order_id}')" value="주문취소" disabled />
 			   </c:otherwise>
 			  </c:choose>
 			</td>
-			
-			</tr><%--실제 상품 row --%>
-         
-           <c:set  var="pre_order_id" value="${myorderdetail.order_id}" /><%--중복상품 처리 --%>
-           
-           </c:when><%--이전 주문과 동일하지 않을 경우 --%>
-      	</c:choose> <%--주문상품 동일 여부 --%>
-	   
+			</tr>
+          <c:set  var="pre_order_id" value="${item.order_id}" />
+           </c:when>
+      </c:choose>
 	   </c:forEach>
-	  
-	  </c:otherwise> <%--주문 상품이 존재할 경우 --%>
-    </c:choose> 	 <%--주문상품 있냐 없냐 여부 --%>   
+	  </c:otherwise>
+    </c:choose> 	    
 </tbody>
 </table>
 

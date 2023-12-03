@@ -67,17 +67,17 @@
 
     function selectBoxInit(){
     
-     var tel1='${memberInfo.tel1 }';//세션에서 정보 받아온다
-     var hp1='${memberInfo.hp1}';//세션에서 정보 받아온다
-     var selTel1 = document.getElementById('tel1');//select태그 옵션
-     var selHp1 = document.getElementById('hp1');//select태그 옵션
-     var optionTel1 = selTel1.options;//옵션 값 리스트
-     var optionHp1 = selHp1.options;//옵션 값 리스트
+     var tel1='${memberInfo.tel1 }';
+     var hp1='${memberInfo.hp1}';
+     var selTel1 = document.getElementById('tel1');
+     var selHp1 = document.getElementById('hp1');
+     var optionTel1 = selTel1.options;
+     var optionHp1 = selHp1.options;
      var val;
      for(var i=0; i<optionTel1.length;i++){
-       val = optionTel1[i].value;//
-       if(tel1 == val){//tel1이 세션 값이다 val는 옵션 값 리스트이다 
-    	   optionTel1[i].selected= true;//select태그 기본값 선택 완료
+       val = optionTel1[i].value;
+       if(tel1 == val){
+    	   optionTel1[i].selected= true;
         break;
        }
      }  
@@ -98,10 +98,8 @@ function fn_modify_member_info(attribute){
 	// alert(member_id);
 	// alert("mod_type:"+mod_type);
 		var frm_mod_member=document.frm_mod_member;
-		
-		
 		if(attribute=='member_pw'){
-			value=frm_mod_member.member_pw.value;//frm_mod_member는 form태그 
+			value=frm_mod_member.member_pw.value;
 			//alert("member_pw:"+value);
 		}else if(attribute=='member_gender'){
 			var member_gender=frm_mod_member.member_gender;
@@ -148,7 +146,7 @@ function fn_modify_member_info(attribute){
 			//alert("생년 양음년 "+value_gn);
 			value=+value_y+","+value_m+","+value_d+","+value_gn;
 		}else if(attribute=='tel'){
-			var tel1=frm_mod_member.tel1;//select태그이다
+			var tel1=frm_mod_member.tel1;
 			var tel2=frm_mod_member.tel2;
 			var tel3=frm_mod_member.tel3;
 			
@@ -240,7 +238,7 @@ function fn_modify_member_info(attribute){
 					<td>
 						<input name="member_id" type="text" size="20" value="${memberInfo.member_id }"  disabled/>
 					</td>
-					 <td><%-- 아이디는 수정하기 버튼이 없다--%> 
+					 <td>
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -280,8 +278,6 @@ function fn_modify_member_info(attribute){
 					  <input type="button" value="수정하기" onClick="fn_modify_member_info('member_gender')" />
 					</td>
 				</tr>
-				
-				
 				<tr class="dot_line">
 					<td class="fixed_join">법정생년월일</td>
 					<td>
@@ -338,8 +334,6 @@ function fn_modify_member_info(attribute){
 					  <input type="button" value="수정하기" onClick="fn_modify_member_info('member_birth')" />
 					</td>
 				</tr>
-				
-				
 				<tr class="dot_line">
 					<td class="fixed_join">전화번호</td>
 					<td>
@@ -377,7 +371,6 @@ function fn_modify_member_info(attribute){
 					  <input type="button" value="수정하기" onClick="fn_modify_member_info('tel')" />
 					</td>
 				</tr>
-				
 				<tr class="dot_line">
 					<td class="fixed_join">휴대폰번호</td>
 					<td>
@@ -405,14 +398,12 @@ function fn_modify_member_info(attribute){
 					  <input type="button" value="수정하기" onClick="fn_modify_member_info('hp')" />
 					</td>	
 				</tr>
-				
 				<tr class="dot_line">
 					<td class="fixed_join">이메일<br>(e-mail)</td>
 					<td>
 					   <input type="text" name="email1" size=10 value="${memberInfo.email1 }" /> @ <input type="text" size=10  name="email2" value="${memberInfo.email2 }" /> 
-					   <select name="select_email2" onChange=""  title="직접입력1">
-					   <%--title태그는 마우스같다대면 뜨는 글씨 --%>
-							<option value="non">직접입력</option><%--직접입력가능한 이메일 --%>
+					   <select name="select_email2" onChange=""  title="직접입력">
+							<option value="non">직접입력</option>
 							<option value="hanmail.net">hanmail.net</option>
 							<option value="naver.com">naver.com</option>
 							<option value="yahoo.co.kr">yahoo.co.kr</option>

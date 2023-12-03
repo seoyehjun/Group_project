@@ -22,14 +22,12 @@ public class MyPageDAOImpl implements MyPageDAO{
 		return orderGoodsList;
 	}
 	
-	public List selectMyOrderInfo(String order_id) throws DataAccessException
-	{
+	public List selectMyOrderInfo(String order_id) throws DataAccessException{
 		List myOrderList=(List)sqlSession.selectList("mapper.mypage.selectMyOrderInfo",order_id);
 		return myOrderList;
 	}	
 
-	public List<OrderVO> selectMyOrderHistoryList(Map dateMap) throws DataAccessException
-	{
+	public List<OrderVO> selectMyOrderHistoryList(Map dateMap) throws DataAccessException{
 		List<OrderVO> myOrderHistList=(List)sqlSession.selectList("mapper.mypage.selectMyOrderHistoryList",dateMap);
 		return myOrderHistList;
 	}

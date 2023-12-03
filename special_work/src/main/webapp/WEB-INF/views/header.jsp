@@ -22,6 +22,7 @@
  		<ul>
 			<li><a href="${contextPath }/mypage/">home</a></li>
 			<li><a href="${contextPath }/mypage/myDetailInfo">내정보 수정</a></li>
+			<li><a href="${contextPath }/mypage/myCartList">카트</a></li>
 		</ul>
 		
 </nav>

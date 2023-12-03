@@ -13,6 +13,7 @@
 <c:set  var="totalDiscountedPrice" value="0" /> <!-- 총 할인금액 -->
 <head>
 <script type="text/javascript">
+
 function calcGoodsPrice(bookPrice,obj){
 	var totalPrice,final_total_price,totalNum;
 	var goods_qty=document.getElementById("select_goods_qty");
@@ -206,40 +207,40 @@ function fn_order_all_cart_goods(){
 			        <c:otherwise>
 			 <tr>       
                <form name="frm_order_all_cart">
-				      <c:forEach var="myorderdetail" myorderdetails="${myGoodsList }" varStatus="cnt">
+				      <c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
 				       <c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cart_goods_qty}" />
 				       <c:set var="cart_id" value="${myCartList[cnt.count-1].cart_id}" />
-					<td><input type="checkbox" name="checked_goods"  checked  value="${myorderdetail.goods_id }"  onClick="calcGoodsPrice(${myorderdetail.goods_sales_price },this)"></td>
+					<td><input type="checkbox" name="checked_goods"  checked  value="${item.goods_id }"  onClick="calcGoodsPrice(${item.goods_sales_price },this)"></td>
 					<td class="goods_image">
-					<a href="${contextPath}/goods/goodsDetail.do?goods_id=${myorderdetail.goods_id }">
-						<img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${myorderdetail.goods_id}&fileName=${myorderdetail.goods_fileName}"  />
+					<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
+						<img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}"  />
 					</a>
 					</td>
 					<td>
 						<h2>
-							<a href="${contextPath}/goods/goodsDetail.do?goods_id=${myorderdetail.goods_id }">${myorderdetail.goods_title }</a>
+							<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_title }</a>
 						</h2>
 					</td>
-					<td class="price"><span>${myorderdetail.goods_price }원</span></td>
+					<td class="price"><span>${item.goods_price }원</span></td>
 					<td>
 					   <strong>
-					      <fmt:formatNumber  value="${myorderdetail.goods_sales_price*0.9}" type="number" var="discounted_price" />
+					      <fmt:formatNumber  value="${item.goods_sales_price*0.9}" type="number" var="discounted_price" />
 				            ${discounted_price}원(10%할인)
 				         </strong>
 					</td>
 					<td>
 					   <input type="text" id="cart_goods_qty" name="cart_goods_qty" size=3 value="${cart_goods_qty}"><br>
-						<a href="javascript:modify_cart_qty(${myorderdetail.goods_id },${myorderdetail.goods_sales_price*0.9 },${cnt.count-1 });" >
+						<a href="javascript:modify_cart_qty(${item.goods_id },${item.goods_sales_price*0.9 },${cnt.count-1 });" >
 						    <img width=25 alt=""  src="${contextPath}/resources/image/btn_modify_qty.jpg">
 						</a>
 					</td>
 					<td>
 					   <strong>
-					    <fmt:formatNumber  value="${myorderdetail.goods_sales_price*0.9*cart_goods_qty}" type="number" var="total_sales_price" />
+					    <fmt:formatNumber  value="${item.goods_sales_price*0.9*cart_goods_qty}" type="number" var="total_sales_price" />
 				         ${total_sales_price}원
 					</strong> </td>
 					<td>
-					      <a href="javascript:fn_order_each_goods('${myorderdetail.goods_id }','${myorderdetail.goods_title }','${myorderdetail.goods_sales_price}','${myorderdetail.goods_fileName}');">
+					      <a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_title }','${item.goods_sales_price}','${item.goods_fileName}');">
 					       	<img width="75" alt=""  src="${contextPath}/resources/image/btn_order.jpg">
 							</a><br>
 					 	<a href="#"> 
@@ -256,7 +257,7 @@ function fn_order_all_cart_goods(){
 					   </a>
 					</td>
 			</tr>
-				<c:set  var="totalGoodsPrice" value="${totalGoodsPrice+myorderdetail.goods_sales_price*0.9*cart_goods_qty }" />
+				<c:set  var="totalGoodsPrice" value="${totalGoodsPrice+item.goods_sales_price*0.9*cart_goods_qty }" />
 				<c:set  var="totalGoodsNum" value="${totalGoodsNum+1 }" />
 			   </c:forEach>
 		    

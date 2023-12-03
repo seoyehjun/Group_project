@@ -26,8 +26,7 @@ import com.bookshop01.order.vo.OrderVO;
 
 @Controller("myPageController")
 @RequestMapping(value="/mypage")
-public class MyPageControllerImpl extends BaseController  implements MyPageController
-{
+public class MyPageControllerImpl extends BaseController  implements MyPageController{
 	@Autowired
 	private MyPageService myPageService;
 	
@@ -44,7 +43,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		memberVO=(MemberVO)session.getAttribute("memberInfo");//VO 형태로 바인딩됨(로그인 컨트롤러에서)
+		memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String member_id=memberVO.getMember_id();
 		
 		List<OrderVO> myOrderList=myPageService.listMyOrderGoods(member_id);
@@ -131,8 +130,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		HttpSession session=request.getSession();
 		memberVO=(MemberVO)session.getAttribute("memberInfo");
 		String  member_id=memberVO.getMember_id();
-		
-		if(attribute.equals("member_birth")){//코드 분리가 필요한것들은 전처리 해둔다.
+		if(attribute.equals("member_birth")){
 			val=value.split(",");
 			memberMap.put("member_birth_y",val[0]);
 			memberMap.put("member_birth_m",val[1]);
@@ -169,7 +167,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		//수정된 회원 정보를 다시 세션에 저장한다.
 		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);
 		session.removeAttribute("memberInfo");
-		session.setAttribute("memberInfo", memberVO);//세션 업로드
+		session.setAttribute("memberInfo", memberVO);
 		
 		String message = null;
 		ResponseEntity resEntity = null;
