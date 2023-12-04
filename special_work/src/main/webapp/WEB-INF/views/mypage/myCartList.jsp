@@ -2,8 +2,23 @@
     pageEncoding="EUC-KR"%>
 <%@ include file="../header.jsp" %>
 
+<style>
+ 	td
+ 	{
+ 		padding-left: 30px;
+ 		padding-right: 30px;
+ 	}
+</style>
 <table>
  <tbody>
+  <tr style="background: #008080">
+  				<td>썸네일</td>
+				<td>상품명</td>
+				<td>가격</td>
+				<td>옵션</td>
+				<td>수량</td>
+			</tr>
+ 
   <c:forEach var="cart" items="${ mycartlist }" >
    <tr>  
     <%--상품 이미지(상품 상세로 링크연결) --%>

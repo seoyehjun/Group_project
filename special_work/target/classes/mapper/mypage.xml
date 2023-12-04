@@ -10,6 +10,10 @@
 			<if test=" members_password!='' and members_password!=null">
 			        members_password=#{members_password, jdbcType=VARCHAR},
 			</if>
+			
+			<if test="members_nickname!='' and members_nickname!=null">
+					members_nickname=#{members_nickname, jdbcType=VARCHAR},
+			</if>
 			      
 			<if test=" members_phone_number!='' and members_phone_number!=null">
 			        members_phone_number=#{members_phone_number, jdbcType=VARCHAR},

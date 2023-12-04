@@ -37,14 +37,13 @@ function fn_modify_member_info(attribute){
 	// alert("mod_type:"+mod_type);
 		var frm_mod_member=document.frm_mod_member;
 		
-		
 		if(attribute=='members_password'){
 			value=frm_mod_member.members_password.value;//frm_mod_member´Â formÅÂ±× 
 			//alert("member_pw:"+value);
 		}
 		else if(attribute=='members_nickname')
 		{
-			value=frm_mode_member.members_nickname.value;
+			value=frm_mod_member.members_nickname.value;
 		}
 		else if(attribute=='tel')
 		{

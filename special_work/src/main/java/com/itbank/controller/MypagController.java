@@ -61,7 +61,7 @@ public class MypagController
 		//String members_idx = memberVO.getMembers_idx()+"";//VO 구현해라
 		
 		//로그인 구현되면 위 두줄 주석 풀고 members_idx받아오면 된다
-		List<O_P_OD_vo> myOrderList = myPageService.listMyOrderGoods("2");
+		List<O_P_OD_vo> myOrderList = myPageService.listMyOrderGoods("1");
 		httpsession.setAttribute("myOrderList", myOrderList);//myPageMain에 보낼 정보 바인딩
 		System.out.println("myOrderList size: "+myOrderList.size());
 		return "mypage/myPageMain";
@@ -96,8 +96,6 @@ public class MypagController
 		
 		//아래 3코드는 맵에 member_idx 쌍을 넣기 위해 존재
 		MemberVO memberVO=(MemberVO)session.getAttribute("memberInfo");
-		System.out.println("Members_idx: "+memberVO.getMembers_idx());
-		System.out.println("74line");
 		String  member_idx=memberVO.getMembers_idx()+"";
 		
 		String temp;
