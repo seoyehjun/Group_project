@@ -41,5 +41,5 @@ o.orders_idx, o.orders_date, o.orders_status
 루트 IAM 사용자 MFA걸어두자 
 vpc 구축해보자
 웹서버 DB 구축됨
-AWS Technical Essentials
+AWS Technical Essentials 과정에 대해 알아보자
 
